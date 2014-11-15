@@ -17,11 +17,7 @@ public class Interactable : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hoverText = GetComponentInChildren<TextMesh>() as TextMesh;
-		if(hoverText != null){
-			hoverText.text = name;
-			hoverText.renderer.enabled = false;
-		}
+		hoverText = GameObject.Find("HoverText").GetComponentInChildren<TextMesh>() as TextMesh;
 	}
 	
 	// Update is called once per frame
@@ -40,11 +36,11 @@ public class Interactable : MonoBehaviour {
 	}
 
 	void OnMouseOver () {
-		if(hoverText != null) hoverText.renderer.enabled = true;
+		hoverText.text = name;
 	}
 
 	void OnMouseExit () {
-		if(hoverText != null) hoverText.renderer.enabled = false;
+		hoverText.text = "";
 	}
 
 }
