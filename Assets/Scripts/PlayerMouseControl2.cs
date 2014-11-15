@@ -12,7 +12,7 @@ public class PlayerMouseControl2 : MonoBehaviour {
 	
 	public	float	rayDistance	=	25.00f;
 
-	private Interactable currentTarget; // If this isn't null the player should move towards it and interact when close enough
+	private InteractableKT currentTarget; // If this isn't null the player should move towards it and interact when close enough
 	private Inventory inventory;
 
 	// Use this for initialization
@@ -61,7 +61,7 @@ public class PlayerMouseControl2 : MonoBehaviour {
 			// Interactables
 
 			if (hit.transform.tag == "Interactable"){
-				Interactable interactable = hit.transform.GetComponent("Interactable") as Interactable;
+				InteractableKT interactable = hit.transform.GetComponent("InteractableKT") as InteractableKT;
 
 				if (interactable == null) Debug.LogError("Something has the Interactable tag, but not the script");
 

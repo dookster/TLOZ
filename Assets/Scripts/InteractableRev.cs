@@ -11,20 +11,21 @@ public class InteractableRev : MonoBehaviour {
 	public bool justLook;
 	public string lookDescription;
 
-	public float interactDistance = 1; // probably the same for all objects, but can be changed here.
+	public float interactDistance = 1; // probably the same for all objects, but can be changed here. // Rev: Collision sphere? See below
 
-	public TextMesh hoverText;
-	public TextMesh hoverTextShadow;
+	public TextMesh actionLine; // Rev: Happy to rename this - it's the constructed sentence that describes what left-clicking will do. =)
+	public TextMesh actionLineShadow;
+
+	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
+	public TextMesh sayCharShadow;
 
 	// Use this for initialization
 	void Start () {
-		// hoverText = GetComponentInChildren<TextMesh>() as TextMesh; // Yep, that's pretty fucking smart. =) Have to disable for my proposal, though...
-		if(hoverText != null){
-			hoverText.text = name; // THIS IS ALSO CLEVER! Nice one, Kristian!
-			hoverTextShadow.text = name;
-			hoverText.renderer.enabled = false;
-			hoverTextShadow.renderer.enabled = false;
-		}
+		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
+		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
+
+		sayChar = GameObject.Find ("sayAbner").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
+		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
 	}
 	
 	// Update is called once per frame
@@ -32,24 +33,33 @@ public class InteractableRev : MonoBehaviour {
 
 	}
 
+	void OnMouseOver () {
+		if(actionLine != null) {
+			actionLine.text = name;
+			actionLineShadow.text = name;
+		}
+	}
+	
+	void OnMouseExit () {
+		if (actionLine != null) {
+			actionLine.text = null;
+			actionLineShadow.text = null;
+		}
+	}
+
 	public void Interact(){
 		Debug.Log ("Beep, boop. Interacting");
+		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
+			sayChar.text = "Beep, boop. Interacting";
+			sayCharShadow.text = "Beep, boop. Interacting";
+			GameFlow.instance.ResetInspectTime();
+			//inspectTime = Time.time + inspectTimeOut;
+		}
 	}
 
-	public bool withinRange(Vector3 playerPosition){
-		Vector3 thisPosition = new Vector3(transform.position.x, 0, transform.position.z);
-		playerPosition = new Vector3(playerPosition.x, 0, playerPosition.z);
+	public bool withinRange(Vector3 playerPosition){	// Kristian, does it make sense to replace this with a sphere collider test? More performant, visual.
+		Vector3 thisPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
+		playerPosition = new Vector3(playerPosition.x, 0.0f, playerPosition.z);
 		return Vector3.Distance(thisPosition, playerPosition) <= interactDistance;
 	}
-
-	void OnMouseOver () {
-		if(hoverText != null) hoverText.renderer.enabled = true;
-		if(hoverText != null) hoverTextShadow.renderer.enabled = true;
-	}
-
-	void OnMouseExit () {
-		if(hoverText != null) hoverText.renderer.enabled = false;
-		if(hoverText != null) hoverTextShadow.renderer.enabled = false;
-	}
-
 }

@@ -29,9 +29,18 @@ public class GameFlow : MonoBehaviour {
 	
 	[SerializeField]	bool	pause = false;
 
+	public float inspectTime = 0.0f;
+	public float inspectTimeOut = 2.0f;
+
+	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
+	public TextMesh sayCharShadow;
+
 	// Use this for initialization
 	void Start () {
 	
+		sayChar = GameObject.Find ("sayAbner").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
+		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
+
 	}
 	
 	// Update is called once per frame
@@ -43,5 +52,16 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
+		inspectTime += Time.deltaTime;
+		
+		if(inspectTime >= inspectTimeOut){ // Rev: Timer for character dialogue. Should be global in gameflow? Should be coroutine?
+			sayChar.text = null;
+			sayCharShadow.text = null;
+		}
 	}
+
+	public void ResetInspectTime () {
+		inspectTime = 0.0f;
+		Debug.Log ("Resetting timer for inspection text speed");
+		}
 }
