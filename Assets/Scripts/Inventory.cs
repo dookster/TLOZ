@@ -22,7 +22,9 @@ public class Inventory : MonoBehaviour {
 
 	public void addItem(GameObject item){
 		item.transform.parent = anchor;
-		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, 0, 0);
+		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, item.GetComponent<InteractableRev> ().invTargetYPos, -1.0f);
+		item.transform.localScale = item.GetComponent<InteractableRev> ().invTargetScale;
+		item.transform.localEulerAngles = item.GetComponent<InteractableRev> ().invTargetRotation;
 		item.layer = LayerMask.NameToLayer("UI");
 		item.tag = "Inventory";
 		items.Add(item);

@@ -21,6 +21,10 @@ public class InteractableRev : MonoBehaviour {
 
 	private PlayerMouseControl playMousCont;
 
+	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
+	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
+	public float invTargetYPos = 0.0f;
+
 	// Use this for initialization
 	void Start () {
 		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
