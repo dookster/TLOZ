@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour {
 	 */
 	private void settleItems(){
 		for(int n = 0 ; n < items.Count ; n++){
-			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", 0, "z", 0, "time", 0.5f, "islocal", true));
+			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", 0, "z", -1.0f, "time", 0.5f, "islocal", true));
 			//items[n].transform.localPosition = new Vector3( * n, 0, 0);
 		}
 	}

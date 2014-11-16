@@ -184,6 +184,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
 --- !u!23 &67329929
 Renderer:
   m_ObjectHideFlags: 0
@@ -871,6 +874,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: Freshly brewed!
   interactDistance: 1
+  invTargetRotation: {x: 0, y: 0, z: 0}
+  invTargetScale: {x: 1, y: 1, z: 1}
+  invTargetYPos: 0
 --- !u!1 &397592117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1381,76 @@ Prefab:
   m_RootGameObject: {fileID: 1818990634}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &663241161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 663241165}
+  - 33: {fileID: 663241164}
+  - 64: {fileID: 663241163}
+  - 23: {fileID: 663241162}
+  m_Layer: 0
+  m_Name: MenuIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &663241162
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663241161}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 3d767e6f2bd6ec7409792fc820e5459b, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &663241163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663241161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &663241164
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663241161}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &663241165
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663241161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 171.330002, y: 4.53000021, z: 1}
+  m_LocalScale: {x: .75, y: .75, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2068457090}
+  m_RootOrder: 3
 --- !u!1001 &683248404
 Prefab:
   m_ObjectHideFlags: 0
@@ -2192,6 +2268,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
+  invTargetScale: {x: 4.59184217, y: 4.59184217, z: 4.59184217}
+  invTargetYPos: -.150000006
 --- !u!65 &1174152766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2238,6 +2317,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
 --- !u!23 &1222975426
 Renderer:
   m_ObjectHideFlags: 0
@@ -2393,6 +2475,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
 --- !u!23 &1227236269
 Renderer:
   m_ObjectHideFlags: 0
@@ -2596,6 +2681,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
 --- !u!23 &1290579253
 Renderer:
   m_ObjectHideFlags: 0
@@ -2642,7 +2730,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1290579251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.31999969, y: .159999847, z: .800000012}
+  m_LocalPosition: {x: -3.68000031, y: .159999847, z: .800000012}
   m_LocalScale: {x: .319999993, y: .319999993, z: .319999993}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3056,6 +3144,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
 --- !u!23 &1465418960
 Renderer:
   m_ObjectHideFlags: 0
@@ -3914,6 +4005,9 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  invTargetRotation: {x: 22.8317299, y: 34.1046715, z: 150.141693}
+  invTargetScale: {x: 5.38652086, y: 1.22242701, z: 1.22242701}
+  invTargetYPos: 0
 --- !u!65 &1874253481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4018,6 +4112,9 @@ MonoBehaviour:
   justLook: 1
   lookDescription: My coffee maker!
   interactDistance: 1
+  invTargetRotation: {x: 0, y: 0, z: 0}
+  invTargetScale: {x: 1, y: 1, z: 1}
+  invTargetYPos: 0
 --- !u!65 &1920506700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4557,6 +4654,7 @@ Transform:
   - {fileID: 2072183109}
   - {fileID: 905401396}
   - {fileID: 1708848320}
+  - {fileID: 663241165}
   m_Father: {fileID: 1660241012}
   m_RootOrder: 5
 --- !u!64 &2068457091
@@ -4655,7 +4753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 1708848320}
-  itemDistance: .5
+  itemDistance: 1
   items: []
 --- !u!1 &2106247569
 GameObject:
