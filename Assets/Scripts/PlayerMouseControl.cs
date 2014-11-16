@@ -17,6 +17,7 @@ public class PlayerMouseControl : MonoBehaviour {
 	// Rev: Change InteractableRev to Interactable if everything seems stable
 	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
 	private InteractableRev	currentTarget; // If this isn't null the player should move towards it and interact when close enough
+	private InteractableRev currentDragging; // Item we're currently dragging around from the inventory
 	private Inventory		inventory;
 
 	public Texture2D cursorTextureNormal; // Rev: Initial attempt to set up custom cursor, could be useful for dynamic cursor
@@ -42,12 +43,11 @@ public class PlayerMouseControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// Rev: Get screen coords with 0,0 being the centre
-		mouseScreenPos = new Vector2((Input.mousePosition.x - (Screen.width/2)),(Input.mousePosition.y - (Screen.height/2)));
+		// KT: Show the inventory when pointer is in top 1/8th of the screen
 
-		if (mouseScreenPos.y < 244.0f){
+		if (Input.mousePosition.y < Screen.height - Screen.height / 8){
 			inventoryCam.OpenInventory();
-		}else if (mouseScreenPos.y > 244.0f){
+		}else if (Input.mousePosition.y > Screen.height / 8){
 			inventoryCam.CloseInventory();
 		}
 
@@ -86,7 +86,7 @@ public class PlayerMouseControl : MonoBehaviour {
 		Debug.DrawRay(cameraA.transform.position, ray.direction * rayDistance, Color.red);
 
 		// Clicking in the game view
-		if(Physics.Raycast(ray, out hit)){					
+		if(Physics.Raycast(ray, out hit)){
 			// Interactables
 
 			if (hit.transform.tag == "Interactable"){
@@ -106,30 +106,39 @@ public class PlayerMouseControl : MonoBehaviour {
 						character01.destination 	= hit.point;
 					}
 				}
+
+				// Dropping an item on something in the world
+				if(Input.GetButtonUp("Fire1") && currentDragging != null){
+					if(interactable.checkItemMatch(currentDragging)){
+						inventory.removeItem(currentDragging.gameObject);
+						currentDragging.gameObject.SetActive(false);
+					}
+				}
 							
+			} 
+
+			// Clicking UI stuff
+			else if (Physics.Raycast (uiRay, out hit)){
+				if(Input.GetButton ("Fire1") && hit.transform.tag == "Inventory" && !haveClickedInv){
+					// Clicking something in the inventory?
+					// KT: moving the item during click&drag is handled in the Interactable class, 
+					//     here we handle interaction when dropping an item onto another
+
+					currentDragging = hit.transform.gameObject.GetComponent<InteractableRev>();
+					haveClickedInv = true;
+				}
 			} else if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
 				// Clicked on 'nothing', clear target and walks towards it
 				currentTarget = null;
-
+				
 				walkTo.transform.position	= hit.point;			
 				character01.destination 	= hit.point;
 			}
-
-			// Clicking UI stuff
-			if (Physics.Raycast (uiRay, out hit)){
-				if(Input.GetButton ("Fire1") && hit.transform.tag == "Inventory" && !haveClickedInv){
-					// Clicking something in the inventory?
-					// Handle click and drag?
-
-					// Just testing remove from inventory for now
-					inventory.removeItem(hit.transform.gameObject);
-					haveClickedInv = true;
-				}
-			}
-		}	
+		}
 
 		if (Input.GetButtonUp ("Fire1")){
 			haveClickedInv = false;
+			currentDragging = null;
 		}
 	}
 

@@ -20,6 +20,8 @@ public class InteractableRev : MonoBehaviour {
 	private TextMesh sayCharShadow;
 
 	private PlayerMouseControl playMousCont;
+	private Camera uiCamera;
+	private Inventory inventory;
 
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
@@ -34,11 +36,35 @@ public class InteractableRev : MonoBehaviour {
 		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
 
 		playMousCont = GameObject.Find ("Main Camera").GetComponent<PlayerMouseControl> ();
+
+		uiCamera = GameObject.Find("InventoryCamera").GetComponent<Camera>();
+		inventory = GameObject.Find ("Inventory").GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	void OnMouseDown() {
+		if (actionLine != null) {
+			actionLine.text = null;
+			actionLineShadow.text = null;
+			playMousCont.CursorNormal();
+		}
+	}
+
+	void OnMouseDrag() {
+		collider.enabled = false;
+		if(tag == "Inventory"){
+			Vector3 worldPoint = uiCamera.ScreenToWorldPoint(Input.mousePosition);
+			transform.position = new Vector3(worldPoint.x, worldPoint.y, 1);
+		}
+	}
+
+	void OnMouseUp() {
+		inventory.settleItems();
+		collider.enabled = true;
 	}
 
 	void OnMouseOver () {
@@ -63,6 +89,17 @@ public class InteractableRev : MonoBehaviour {
 			sayCharShadow.text = "Beep, boop. Interacting";
 			GameFlow.instance.ResetReadingTime();
 		}
+	}
+
+	/**
+	 * Check if this item matches with another item dropped on it, returning true if something should happen
+	 */
+	public bool checkItemMatch(InteractableRev otherItem){
+		// How do we handle this? Individual scripts for each interactable?
+
+		// Add code here for handling player 
+
+		return true; // just pretend everything can do anything for now
 	}
 
 	public bool withinRange(Vector3 playerPosition){	// Kristian, does it make sense to replace this with a sphere collider test? More performant, visual.
