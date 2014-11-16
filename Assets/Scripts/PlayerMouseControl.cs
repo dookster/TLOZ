@@ -21,6 +21,8 @@ public class PlayerMouseControl : MonoBehaviour {
 	// public CursorMode cursorMode = CursorMode.Auto;
 	// public Vector2 hotSpot = Vector2.zero;
 
+	public Vector2 mouseScreenPos; // Rev: Left this public to easily make screen measurements from inspector
+
 	// Use this for initialization
 	void Start () {
 		inventory = GameObject.Find ("Inventory").GetComponent<Inventory> () as Inventory; // Rev: Why 'as Inventory'? Unfamiliar!
@@ -30,6 +32,14 @@ public class PlayerMouseControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		// Rev: Get screen coords with 0,0 being the centre
+		mouseScreenPos = new Vector2((Input.mousePosition.x - (Screen.width/2)),(Input.mousePosition.y - (Screen.height/2)));
+
+		if (mouseScreenPos.y > 244.0f){
+			Debug.Log ("Open inventory, disable movement");
+		}
+
 		/*
 		 * Clicking on stuff is ordered by tags. 
 		 * 
@@ -73,7 +83,7 @@ public class PlayerMouseControl : MonoBehaviour {
 
 				if(interactable == null) Debug.LogError("Something has the Interactable tag, but not the script");
 
-				if (Input.GetButtonDown ("Fire1")){
+				if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
 					if(interactable.justLook){
 						// Don't move, just look at it 
 						// Rev: An issue here - sometimes we want the PC to APPROACH the interactable before saying something. Other times, we want them to walk and talk.
@@ -86,7 +96,7 @@ public class PlayerMouseControl : MonoBehaviour {
 					}
 				}
 							
-			} else if (Input.GetButtonDown ("Fire1")){
+			} else if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
 				// Clicked on 'nothing', clear target and walks towards it
 				currentTarget = null;
 

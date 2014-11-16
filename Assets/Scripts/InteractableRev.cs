@@ -48,12 +48,10 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	public void Interact(){
-		Debug.Log ("Beep, boop. Interacting");
 		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
 			sayChar.text = "Beep, boop. Interacting";
 			sayCharShadow.text = "Beep, boop. Interacting";
-			GameFlow.instance.ResetInspectTime();
-			//inspectTime = Time.time + inspectTimeOut;
+			GameFlow.instance.ResetReadingTime();
 		}
 	}
 

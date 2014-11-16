@@ -19,18 +19,14 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	[SerializeField]	float	deltaTimeModifier = 1.0f;
-	
 	[Range(0.0f, 1.0f)]
 	[SerializeField]	float	dTimeTarget = 1.0f;
-	
 	public	float	dTimeTargetSpeed = 1.0f;
-	
 	public	float	dTimeModified; // This should be a property!
-	
 	[SerializeField]	bool	pause = false;
 
-	public float inspectTime = 0.0f;
-	public float inspectTimeOut = 2.0f;
+	public float readingTime = 0.0f;
+	public float readingSpeed = 2.0f;
 
 	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
 	public TextMesh sayCharShadow;
@@ -52,16 +48,16 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
-		inspectTime += Time.deltaTime;
+		readingTime += Time.deltaTime;
 		
-		if(inspectTime >= inspectTimeOut){ // Rev: Timer for character dialogue. Should be global in gameflow? Should be coroutine?
+		if(readingTime >= readingSpeed){ // Rev: Timer for character dialogue. Should be global in gameflow? Should be coroutine?
 			sayChar.text = null;
 			sayCharShadow.text = null;
 		}
 	}
 
-	public void ResetInspectTime () {
-		inspectTime = 0.0f;
-		Debug.Log ("Resetting timer for inspection text speed");
+	public void ResetReadingTime () {
+		readingTime = 0.0f;
+		Debug.Log ("Resetting timer for reading text speed");
 		}
 }

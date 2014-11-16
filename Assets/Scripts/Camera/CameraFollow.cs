@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour {
 
 	public float yDistance;
 	
-	private bool wasLocked = false;
+//	private bool wasLocked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -27,29 +27,29 @@ public class CameraFollow : MonoBehaviour {
 		Vector3 modifiedTarget = new Vector3 (target.position.x, target.position.y + yDistance, target.position.z + zDistance);
 		transform.position = Vector3.Lerp (transform.position, modifiedTarget, GameFlow.instance.dTimeModified * speed);
 
-		if (Input.GetKeyDown("escape"))
-			Screen.lockCursor = false;
-		
-		if (!Screen.lockCursor && wasLocked) {
-			wasLocked = false;
-			DidUnlockCursor();
-		} else
-		if (Screen.lockCursor && !wasLocked) {
-			wasLocked = true;
-			DidLockCursor();
-		}
+//		if (Input.GetKeyDown("escape"))
+//			Screen.lockCursor = false;
+//		
+//		if (!Screen.lockCursor && wasLocked) {
+//			wasLocked = false;
+//			DidUnlockCursor();
+//		} else
+//		if (Screen.lockCursor && !wasLocked) {
+//			wasLocked = true;
+//			DidLockCursor();
+//		}
 
 	}
 
-	void DidLockCursor() {
-		Debug.Log("Locking cursor");
-		guiTexture.enabled = false;
-	}
-	void DidUnlockCursor() {
-		Debug.Log("Unlocking cursor");
-		guiTexture.enabled = true;
-	}
-	void OnMouseDown() {
-		Screen.lockCursor = true;
-	}
+//	void DidLockCursor() {
+//		Debug.Log("Locking cursor");
+//		guiTexture.enabled = false;
+//	}
+//	void DidUnlockCursor() {
+//		Debug.Log("Unlocking cursor");
+//		guiTexture.enabled = true;
+//	}
+//	void OnMouseDown() {
+//		Screen.lockCursor = true;
+//	}
 }
