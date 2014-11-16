@@ -150,94 +150,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 281708824}
   m_GameObject: {fileID: 46274578}
   m_Mesh: {fileID: 4300000, guid: ca9240b1ecd6777479e3da83c9994b05, type: 3}
---- !u!1 &67329927
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 67329932}
-  - 33: {fileID: 67329931}
-  - 65: {fileID: 67329930}
-  - 23: {fileID: 67329929}
-  - 114: {fileID: 67329928}
-  m_Layer: 0
-  m_Name: A green cube!
-  m_TagString: Interactable
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &67329928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 67329927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUp: 1
-  justLook: 0
-  lookDescription: 
-  interactDistance: 1
-  invTargetRotation: {x: 45, y: 45, z: 45}
-  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
-  invTargetYPos: 0
---- !u!23 &67329929
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 67329927}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 6569a4236d1d6c34b90012bcb5c8e3f4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &67329930
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 67329927}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &67329931
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 67329927}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &67329932
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 67329927}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.19664407, y: .159999847, z: .800000012}
-  m_LocalScale: {x: .319999993, y: .319999993, z: .319999993}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1 &84774242
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +568,52 @@ Transform:
   - {fileID: 1968255359}
   m_Father: {fileID: 1123883861}
   m_RootOrder: 3
+--- !u!1 &269572731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 269572733}
+  - 114: {fileID: 269572732}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &269572732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269572731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  justLook: 0
+  lookDescription: 
+  interactDistance: 1
+  invTargetRotation: {x: 0, y: 0, z: 0}
+  invTargetScale: {x: 1, y: 1, z: 1}
+  invTargetYPos: 0
+  events: []
+--- !u!4 &269572733
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269572731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.50755215, y: -3.49302101, z: 4.38546705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1382846095}
+  m_RootOrder: 3
 --- !u!1001 &281708824
 Prefab:
   m_ObjectHideFlags: 0
@@ -870,13 +828,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 0
   justLook: 0
   lookDescription: Freshly brewed!
   interactDistance: 1
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
+  events: []
 --- !u!1 &397592117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,13 +2222,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
   invTargetScale: {x: 4.59184217, y: 4.59184217, z: 4.59184217}
   invTargetYPos: -.150000006
+  events: []
 --- !u!65 &1174152766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2296,7 +2254,7 @@ GameObject:
   - 23: {fileID: 1222975426}
   - 114: {fileID: 1222975425}
   m_Layer: 0
-  m_Name: A yellow cube!
+  m_Name: YellowCube
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2313,13 +2271,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
+  events:
+  - itemName: Player
+    comment: Mellow yellow.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
+  - itemName: BlueCube
+    comment: Wow! They merged into a green cube!
+    pickUp: 0
+    destroyThis: 1
+    destroyOther: 1
+    newItemInInventory: {fileID: 100000, guid: fb7ed893528704d46ab72357c8879bdb, type: 2}
+  - itemName: RedCube
+    comment: 'Nah. I don''t want to try that. '
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
 --- !u!23 &1222975426
 Renderer:
   m_ObjectHideFlags: 0
@@ -2370,7 +2346,7 @@ Transform:
   m_LocalScale: {x: .319999993, y: .319999993, z: .319999993}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1225907787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,7 +2430,7 @@ GameObject:
   - 23: {fileID: 1227236269}
   - 114: {fileID: 1227236268}
   m_Layer: 0
-  m_Name: A brown cube!
+  m_Name: BrownCube
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2471,13 +2447,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
+  events:
+  - itemName: Player
+    comment: It has a beatiful brown hue!
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
+  - itemName: BlueCube
+    comment: Hmm, blue and brown doesn't seeme right.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
 --- !u!23 &1227236269
 Renderer:
   m_ObjectHideFlags: 0
@@ -2660,7 +2648,7 @@ GameObject:
   - 23: {fileID: 1290579253}
   - 114: {fileID: 1290579252}
   m_Layer: 0
-  m_Name: A blue cube!
+  m_Name: BlueCube
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,13 +2665,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
+  events:
+  - itemName: Player
+    comment: Awesome! I wonder what I can use this blue cube for...
+    pickUp: 1
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
 --- !u!23 &1290579253
 Renderer:
   m_ObjectHideFlags: 0
@@ -2931,6 +2925,7 @@ Transform:
   - {fileID: 2007694737}
   - {fileID: 1960341708}
   - {fileID: 421051420}
+  - {fileID: 269572733}
   m_Father: {fileID: 1976689172}
   m_RootOrder: 0
 --- !u!195 &1382846096
@@ -3123,7 +3118,7 @@ GameObject:
   - 23: {fileID: 1465418960}
   - 114: {fileID: 1465418959}
   m_Layer: 0
-  m_Name: A red cube!
+  m_Name: RedCube
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3140,13 +3135,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
+  events:
+  - itemName: Player
+    comment: Pff... red cube. Everyone has one of those. I'll get one anyway.
+    pickUp: 1
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: {fileID: 0}
 --- !u!23 &1465418960
 Renderer:
   m_ObjectHideFlags: 0
@@ -3197,7 +3198,7 @@ Transform:
   m_LocalScale: {x: .319999993, y: .319999993, z: .319999993}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1 &1594374243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,13 +4002,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 1
   justLook: 0
   lookDescription: 
   interactDistance: 1
   invTargetRotation: {x: 22.8317299, y: 34.1046715, z: 150.141693}
   invTargetScale: {x: 5.38652086, y: 1.22242701, z: 1.22242701}
   invTargetYPos: 0
+  events: []
 --- !u!65 &1874253481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4108,13 +4109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d31d4e8f894b043ae3b02ed67a4e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: 0
   justLook: 1
   lookDescription: My coffee maker!
   interactDistance: 1
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
+  events: []
 --- !u!65 &1920506700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4539,10 +4540,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkTo: {fileID: 84774242}
   character01: {fileID: 1382846096}
+  playerInteractable: {fileID: 269572732}
   cameraA: {fileID: 2008450598}
   inventoryCamera: {fileID: 905401399}
   rayDistance: 25
-  currentTarget: {fileID: 0}
+  currentWorldTarget: {fileID: 0}
+  currentItemToUse: {fileID: 0}
   cursorTextureNormal: {fileID: 2800000, guid: 6a9fe4fe0f92ca8489ae7da81888ac1f, type: 3}
   cursorTextureHighlight: {fileID: 2800000, guid: 0fe9bdae100a3084fa943225eb1d9d60,
     type: 3}

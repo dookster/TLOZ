@@ -6,7 +6,8 @@ public class PlayerMouseControl : MonoBehaviour {
 	public	GameObject		walkTo;
 	
 	public	NavMeshAgent	character01;
-	
+	public  InteractableRev playerInteractable; // interactable 'dummy' item to pass to items when we're not dragging anything, lets them choose to be picked up etc.
+
 	public 	Camera 	cameraA;
 	public	Camera	inventoryCamera; // Rev: Should set this up in Start, GameObject.Find etc.
 	
@@ -16,8 +17,9 @@ public class PlayerMouseControl : MonoBehaviour {
 
 	// Rev: Change InteractableRev to Interactable if everything seems stable
 	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
-	private InteractableRev	currentTarget; // If this isn't null the player should move towards it and interact when close enough
-	private InteractableRev currentDragging; // Item we're currently dragging around from the inventory
+	private InteractableRev	currentWorldTarget; // If this isn't null the player should move towards it and interact when close enough
+	[SerializeField] 
+	private InteractableRev currentItemToUse; // Item we're currently dragging around from the inventory
 	private Inventory		inventory;
 
 	public Texture2D cursorTextureNormal; // Rev: Initial attempt to set up custom cursor, could be useful for dynamic cursor
@@ -38,6 +40,7 @@ public class PlayerMouseControl : MonoBehaviour {
 
 		inventoryCam = GameObject.Find ("InventoryCamera").GetComponent<InventoryCamera> ();
 
+		currentItemToUse = playerInteractable;
 	}
 	
 	// Update is called once per frame
@@ -61,18 +64,21 @@ public class PlayerMouseControl : MonoBehaviour {
 		 */ 
 
 		// If there's a target, interact with it if we're close enough
-		if(currentTarget != null){
-			if(currentTarget.withinRange(character01.transform.position)){ // Rev: Sphere collider?
-				if(currentTarget.pickUp){
-					// Move to inventory
-					inventory.addItem(currentTarget.gameObject);
-				} else {
-					// Let the target do whatever it does when interacting (e.g. start conversation with npc?) // Rev: I can dig it, yup. =)
-					currentTarget.Interact();
-				}
+		if(currentWorldTarget != null){
+			if(currentWorldTarget.withinRange(character01.transform.position)){ // Rev: Sphere collider?
+				// Let the target do whatever it does when interacting, picking up is handled by the items themselves
+				currentWorldTarget.Interact(currentItemToUse);
 
-				// Target reached, remove it // Rev: Default behavior is to remove the interactable?
-				currentTarget = null;
+//				if(currentWorldTarget.pickUp){
+//					// Move to inventory
+//					inventory.addItem(currentWorldTarget.gameObject);
+//				} else {
+//
+//
+//				}
+
+				// Target reached, remove it from the target variable
+				currentWorldTarget = null;
 			}
 		}
 
@@ -95,26 +101,26 @@ public class PlayerMouseControl : MonoBehaviour {
 				if(interactable == null) Debug.LogError("Something has the Interactable tag, but not the script");
 
 				if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
+					currentItemToUse = playerInteractable;
 					if(interactable.justLook){
 						// Don't move, just look at it 
 						// Rev: An issue here - sometimes we want the PC to APPROACH the interactable before saying something. Other times, we want them to walk and talk.
 						Debug.Log ("I'm looking at " + interactable.name + " and it's " + interactable.lookDescription); // Rev: Should probably reduce this to description, for flexibility
 					} else {
 						// Target and move towards it
-						currentTarget = interactable;
+						currentWorldTarget = interactable;
 						walkTo.transform.position	= hit.point;
 						character01.destination 	= hit.point;
 					}
 				}
 
 				// Dropping an item on something in the world
-				if(Input.GetButtonUp("Fire1") && currentDragging != null){
-					if(interactable.checkItemMatch(currentDragging)){
-						inventory.removeItem(currentDragging.gameObject);
-						currentDragging.gameObject.SetActive(false);
-					}
+				if(Input.GetButtonUp("Fire1") && currentItemToUse != null){
+					currentWorldTarget = interactable;
+					walkTo.transform.position	= hit.point;
+					character01.destination 	= hit.point;
+					inventory.settleItemsWithoutAnimation();
 				}
-							
 			} 
 
 			// Clicking UI stuff
@@ -124,12 +130,13 @@ public class PlayerMouseControl : MonoBehaviour {
 					// KT: moving the item during click&drag is handled in the Interactable class, 
 					//     here we handle interaction when dropping an item onto another
 
-					currentDragging = hit.transform.gameObject.GetComponent<InteractableRev>();
+					currentItemToUse = hit.transform.gameObject.GetComponent<InteractableRev>();
 					haveClickedInv = true;
 				}
 			} else if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
 				// Clicked on 'nothing', clear target and walks towards it
-				currentTarget = null;
+				currentWorldTarget = null;
+				currentItemToUse = playerInteractable;
 				
 				walkTo.transform.position	= hit.point;			
 				character01.destination 	= hit.point;
@@ -138,7 +145,7 @@ public class PlayerMouseControl : MonoBehaviour {
 
 		if (Input.GetButtonUp ("Fire1")){
 			haveClickedInv = false;
-			currentDragging = null;
+			//currentItemToUse = null;
 		}
 	}
 

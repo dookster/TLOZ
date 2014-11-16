@@ -6,7 +6,7 @@ using System.Collections;
  */
 public class InteractableRev : MonoBehaviour {
 
-	public bool pickUp;
+//	public bool pickUp;
 
 	public bool justLook;
 	public string lookDescription;
@@ -26,6 +26,21 @@ public class InteractableRev : MonoBehaviour {
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
 	public float invTargetYPos = 0.0f;
+
+	public MatchEvent[] events;
+
+	/**
+	 * Class representing a single pairing of items. Each interactable holds a list of these
+	 */
+	[System.Serializable]
+	public class MatchEvent {
+		public string itemName;					// Name of Interactable to match with
+		public string comment;					// What the player says
+		public bool pickUp;						// pick up this item
+		public bool destroyThis;				// destroy (remove) this item after this interaction
+		public bool destroyOther;				// destroy (remove) the item used on this
+		public GameObject newItemInInventory; 	// new item (prefab) to create in inventory, set to null if no item comes of it
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -83,23 +98,55 @@ public class InteractableRev : MonoBehaviour {
 		}
 	}
 
-	public void Interact(){
-		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
-			sayChar.text = "Beep, boop. Interacting";
-			sayCharShadow.text = "Beep, boop. Interacting";
-			GameFlow.instance.ResetReadingTime();
+	/**
+	 * Player tries to use something on this item. 
+	 * 
+	 * Look through all this item's events and see if we have a match.	
+	 * 
+	 */
+	public void Interact(InteractableRev otherItem){
+		// See if we have any events for this item
+		foreach(MatchEvent matchEvent in events){
+			if(matchEvent.itemName.Equals(otherItem.name)){
+				playerSay(matchEvent.comment);
+
+				if(matchEvent.pickUp) inventory.addItem(gameObject);
+
+				if(matchEvent.destroyThis) {
+					gameObject.SetActive(false); // we just deactivate items for now
+				}
+				if(matchEvent.destroyOther) {
+					inventory.removeItem(otherItem.gameObject);
+				}
+
+				if(matchEvent.newItemInInventory != null){
+					GameObject newItem = Instantiate(matchEvent.newItemInInventory) as GameObject;
+					inventory.addItem(newItem);
+				}
+
+				return; // stop looking once we find a match, shouldn't have several events for one item
+			}
 		}
+
+		// We don't have any events for this item, do something generic
+		playerSay("Uh... Hm... Huh?");
+
+
+//		if(pickUp && otherItem == null){ // just use null for basic interaction or some sort of dummy item?
+//			inventory.addItem(gameObject);
+//		}
+//
+//		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
+//			sayChar.text = "Beep, boop. Interacting";
+//			sayCharShadow.text = "Beep, boop. Interacting";
+//			GameFlow.instance.ResetReadingTime();
+//		}
 	}
 
-	/**
-	 * Check if this item matches with another item dropped on it, returning true if something should happen
-	 */
-	public bool checkItemMatch(InteractableRev otherItem){
-		// How do we handle this? Individual scripts for each interactable?
-
-		// Add code here for handling player 
-
-		return true; // just pretend everything can do anything for now
+	private void playerSay(string text){
+		sayChar.text = text;
+		sayCharShadow.text = text;
+		GameFlow.instance.ResetReadingTime();
 	}
 
 	public bool withinRange(Vector3 playerPosition){	// Kristian, does it make sense to replace this with a sphere collider test? More performant, visual.
