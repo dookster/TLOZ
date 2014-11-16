@@ -13,11 +13,13 @@ public class InteractableRev : MonoBehaviour {
 
 	public float interactDistance = 1; // probably the same for all objects, but can be changed here. // Rev: Collision sphere? See below
 
-	public TextMesh actionLine; // Rev: Happy to rename this - it's the constructed sentence that describes what left-clicking will do. =)
-	public TextMesh actionLineShadow;
+	private TextMesh actionLine; // Rev: Happy to rename this - it's the constructed sentence that describes what left-clicking will do. =)
+	private TextMesh actionLineShadow;
 
-	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
-	public TextMesh sayCharShadow;
+	private TextMesh sayChar;
+	private TextMesh sayCharShadow;
+
+	private PlayerMouseControl playMousCont;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +28,8 @@ public class InteractableRev : MonoBehaviour {
 
 		sayChar = GameObject.Find ("sayAbner").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
 		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
+
+		playMousCont = GameObject.Find ("Main Camera").GetComponent<PlayerMouseControl> ();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,7 @@ public class InteractableRev : MonoBehaviour {
 		if(actionLine != null) {
 			actionLine.text = name;
 			actionLineShadow.text = name;
+			playMousCont.CursorHighlight();
 		}
 	}
 	
@@ -44,6 +49,7 @@ public class InteractableRev : MonoBehaviour {
 		if (actionLine != null) {
 			actionLine.text = null;
 			actionLineShadow.text = null;
+			playMousCont.CursorNormal();
 		}
 	}
 

@@ -12,21 +12,30 @@ public class PlayerMouseControl : MonoBehaviour {
 	
 	public	float	rayDistance	=	25.00f;
 
+	private bool	haveClickedInv = false;
+
 	// Rev: Change InteractableRev to Interactable if everything seems stable
 	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
 	private InteractableRev	currentTarget; // If this isn't null the player should move towards it and interact when close enough
 	private Inventory		inventory;
 
-	// public Texture2D cursorTexture; // Rev: Initial attempt to set up custom cursor, could be useful for dynamic cursor
-	// public CursorMode cursorMode = CursorMode.Auto;
-	// public Vector2 hotSpot = Vector2.zero;
+	public Texture2D cursorTextureNormal; // Rev: Initial attempt to set up custom cursor, could be useful for dynamic cursor
+	public Texture2D cursorTextureHighlight;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot;
 
 	public Vector2 mouseScreenPos; // Rev: Left this public to easily make screen measurements from inspector
+
+	private InventoryCamera inventoryCam;
 
 	// Use this for initialization
 	void Start () {
 		inventory = GameObject.Find ("Inventory").GetComponent<Inventory> () as Inventory; // Rev: Why 'as Inventory'? Unfamiliar!
-		//Cursor.SetCursor (cursorTexture, hotSpot, cursorMode); // Rev: More initial custom cursor code.
+
+		hotSpot = new Vector2(cursorTextureNormal.width / 2,cursorTextureNormal.height / 2);
+		Cursor.SetCursor (cursorTextureNormal, hotSpot, cursorMode); // Rev: More initial custom cursor code.
+
+		inventoryCam = GameObject.Find ("InventoryCamera").GetComponent<InventoryCamera> ();
 
 	}
 	
@@ -36,8 +45,10 @@ public class PlayerMouseControl : MonoBehaviour {
 		// Rev: Get screen coords with 0,0 being the centre
 		mouseScreenPos = new Vector2((Input.mousePosition.x - (Screen.width/2)),(Input.mousePosition.y - (Screen.height/2)));
 
-		if (mouseScreenPos.y > 244.0f){
-			Debug.Log ("Open inventory, disable movement");
+		if (mouseScreenPos.y < 244.0f){
+			inventoryCam.OpenInventory();
+		}else if (mouseScreenPos.y > 244.0f){
+			inventoryCam.CloseInventory();
 		}
 
 		/*
@@ -106,14 +117,27 @@ public class PlayerMouseControl : MonoBehaviour {
 
 			// Clicking UI stuff
 			if (Physics.Raycast (uiRay, out hit)){
-				if(Input.GetButton ("Fire1") && hit.transform.tag == "Inventory"){
+				if(Input.GetButton ("Fire1") && hit.transform.tag == "Inventory" && !haveClickedInv){
 					// Clicking something in the inventory?
 					// Handle click and drag?
 
 					// Just testing remove from inventory for now
 					inventory.removeItem(hit.transform.gameObject);
+					haveClickedInv = true;
 				}
 			}
-		}		
-	}                        
+		}	
+
+		if (Input.GetButtonUp ("Fire1")){
+			haveClickedInv = false;
+		}
+	}
+
+	public void CursorHighlight(){
+		Cursor.SetCursor (cursorTextureHighlight, hotSpot, cursorMode); // Rev: More initial custom cursor code
+	}
+
+	public void CursorNormal() {
+		Cursor.SetCursor (cursorTextureNormal, hotSpot, cursorMode); // Rev: More initial custom cursor code
+	}
 }
