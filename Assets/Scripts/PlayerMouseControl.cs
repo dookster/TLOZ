@@ -69,14 +69,6 @@ public class PlayerMouseControl : MonoBehaviour {
 				// Let the target do whatever it does when interacting, picking up is handled by the items themselves
 				currentWorldTarget.Interact(currentItemToUse);
 
-//				if(currentWorldTarget.pickUp){
-//					// Move to inventory
-//					inventory.addItem(currentWorldTarget.gameObject);
-//				} else {
-//
-//
-//				}
-
 				// Target reached, remove it from the target variable
 				currentWorldTarget = null;
 			}
@@ -100,7 +92,7 @@ public class PlayerMouseControl : MonoBehaviour {
 
 				if(interactable == null) Debug.LogError("Something has the Interactable tag, but not the script");
 
-				if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
+				if (Input.GetButtonDown ("Fire1")){
 					currentItemToUse = playerInteractable;
 					if(interactable.justLook){
 						// Don't move, just look at it 
@@ -121,7 +113,7 @@ public class PlayerMouseControl : MonoBehaviour {
 					character01.destination 	= hit.point;
 					inventory.settleItemsWithoutAnimation();
 				}
-			} 
+			}
 
 			// Clicking UI stuff
 			else if (Physics.Raycast (uiRay, out hit)){
@@ -133,7 +125,7 @@ public class PlayerMouseControl : MonoBehaviour {
 					currentItemToUse = hit.transform.gameObject.GetComponent<InteractableRev>();
 					haveClickedInv = true;
 				}
-			} else if (Input.GetButtonDown ("Fire1") && mouseScreenPos.y < 244.0f){
+			} else if (Input.GetButtonDown ("Fire1")){
 				// Clicked on 'nothing', clear target and walks towards it
 				currentWorldTarget = null;
 				currentItemToUse = playerInteractable;

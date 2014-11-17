@@ -27,6 +27,8 @@ public class InteractableRev : MonoBehaviour {
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
 	public float invTargetYPos = 0.0f;
 
+	private bool allowDrag;
+
 	public MatchEvent[] events;
 
 	/**
@@ -62,6 +64,9 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		if(tag == "Inventory"){
+			allowDrag = true;
+		}
 		if (actionLine != null) {
 			actionLine.text = null;
 			actionLineShadow.text = null;
@@ -71,13 +76,14 @@ public class InteractableRev : MonoBehaviour {
 
 	void OnMouseDrag() {
 		collider.enabled = false;
-		if(tag == "Inventory"){
+		if(tag == "Inventory" && allowDrag){
 			Vector3 worldPoint = uiCamera.ScreenToWorldPoint(Input.mousePosition);
 			transform.position = new Vector3(worldPoint.x, worldPoint.y, 1);
 		}
 	}
 
 	void OnMouseUp() {
+		allowDrag = false;
 		inventory.settleItems();
 		collider.enabled = true;
 	}
@@ -105,13 +111,23 @@ public class InteractableRev : MonoBehaviour {
 	 * 
 	 */
 	public void Interact(InteractableRev otherItem){
+		// Send a broadcast for this interaction, even if nothing happens, we can use this for debugging and for making quick
+		// reactions in any other object that may want to know.
+		//
+		// The event name is both item names combined
+		Messenger<string>.Broadcast("event", (otherItem.name + name));
+
+
 		// See if we have any events for this item
 		foreach(MatchEvent matchEvent in events){
 			if(matchEvent.itemName.Equals(otherItem.name)){
+				// Player comment
 				playerSay(matchEvent.comment);
 
+				// Picking items up
 				if(matchEvent.pickUp) inventory.addItem(gameObject);
 
+				// Destroying items
 				if(matchEvent.destroyThis) {
 					gameObject.SetActive(false); // we just deactivate items for now
 				}
@@ -119,6 +135,7 @@ public class InteractableRev : MonoBehaviour {
 					inventory.removeItem(otherItem.gameObject);
 				}
 
+				// New inventory item
 				if(matchEvent.newItemInInventory != null){
 					GameObject newItem = Instantiate(matchEvent.newItemInInventory) as GameObject;
 					inventory.addItem(newItem);
@@ -132,15 +149,6 @@ public class InteractableRev : MonoBehaviour {
 		playerSay("Uh... Hm... Huh?");
 
 
-//		if(pickUp && otherItem == null){ // just use null for basic interaction or some sort of dummy item?
-//			inventory.addItem(gameObject);
-//		}
-//
-//		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
-//			sayChar.text = "Beep, boop. Interacting";
-//			sayCharShadow.text = "Beep, boop. Interacting";
-//			GameFlow.instance.ResetReadingTime();
-//		}
 	}
 
 	private void playerSay(string text){

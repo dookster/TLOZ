@@ -31,6 +31,16 @@ public class GameFlow : MonoBehaviour {
 	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
 	public TextMesh sayCharShadow;
 
+
+	void OnEnable(){
+		// Listen for any broadcasts of the type 'event'
+		Messenger<string>.AddListener("event", HandleEvent);
+	}
+
+	void OnDestroy(){
+		Messenger<string>.RemoveListener("event", HandleEvent);
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -56,8 +66,24 @@ public class GameFlow : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Super generic method, called whenever anything sends a broadcast with the name 'event'. Added here mainly to show
+	 * how other scripts can subscribe to this broadcast if they need to. 
+	 * 
+	 * To send a broadcast use this line:
+	 * 
+	 * Messenger<string>.Broadcast("event", eventName);
+	 * 
+	 */
+	private void HandleEvent(string eventName){
+		Debug.Log("Detected event: " + eventName);
+	}
+
 	public void ResetReadingTime () {
 		readingTime = 0.0f;
 		Debug.Log ("Resetting timer for reading text speed");
-		}
+	}
+
+
+
 }
