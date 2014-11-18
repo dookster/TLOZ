@@ -29,6 +29,10 @@ public class InteractableRev : MonoBehaviour {
 
 	private bool allowDrag;
 
+	// Conversation stuff (no reason we can't theoretically start a conversation with an object)
+	public TextMesh sayNPC; 
+	public TextMesh sayNPCShadow;
+
 	public MatchEvent[] events;
 
 	/**
@@ -36,12 +40,13 @@ public class InteractableRev : MonoBehaviour {
 	 */
 	[System.Serializable]
 	public class MatchEvent {
-		public string itemName;					// Name of Interactable to match with
-		public string comment;					// What the player says
-		public bool pickUp;						// pick up this item
-		public bool destroyThis;				// destroy (remove) this item after this interaction
-		public bool destroyOther;				// destroy (remove) the item used on this
-		public GameObject newItemInInventory; 	// new item (prefab) to create in inventory, set to null if no item comes of it
+		public string itemName;						// Name of Interactable to match with
+		public string comment;						// What the player says
+		public bool pickUp;							// pick up this item
+		public bool destroyThis;					// destroy (remove) this item after this interaction
+		public bool destroyOther;					// destroy (remove) the item used on this
+		public GameObject newItemInInventory; 		// new item (prefab) to create in inventory, set to null if no item comes of it
+		public DialogueConversation conversation;	// Conversation prefab to start
 	}
 
 	// Use this for initialization
@@ -141,6 +146,13 @@ public class InteractableRev : MonoBehaviour {
 					inventory.addItem(newItem);
 				}
 
+				if(matchEvent.conversation != null){
+					//DialogueConversation conversation = Instantiate(matchEvent.conversation) as DialogueConversation;
+					//conversation.startConversation(this);
+
+					matchEvent.conversation.startConversation(this);
+				}
+
 				return; // stop looking once we find a match, shouldn't have several events for one item
 			}
 		}
@@ -151,7 +163,17 @@ public class InteractableRev : MonoBehaviour {
 
 	}
 
-	private void playerSay(string text){
+	public void say(string text){
+		sayNPC.text = text;
+		sayNPCShadow.text = text;
+	}
+
+	private void hideText(){
+		sayNPC.text = "";
+		sayNPCShadow.text = "";
+	}
+
+	public void playerSay(string text){
 		sayChar.text = text;
 		sayCharShadow.text = text;
 		GameFlow.instance.ResetReadingTime();
