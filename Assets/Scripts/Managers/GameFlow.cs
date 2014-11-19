@@ -44,8 +44,8 @@ public class GameFlow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		sayChar = GameObject.Find ("sayAbner").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
-		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
+		sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
+		sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
 
 	}
 	

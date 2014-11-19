@@ -54,8 +54,8 @@ public class InteractableRev : MonoBehaviour {
 		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
 		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
 
-		sayChar = GameObject.Find ("sayAbner").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
-		sayCharShadow = GameObject.Find ("sayAbnerShadow").GetComponent<TextMesh> (); // Rev: This too!
+		sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
+		sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> (); // Rev: This too!
 
 		playMousCont = GameObject.Find ("Main Camera").GetComponent<PlayerMouseControl> ();
 
