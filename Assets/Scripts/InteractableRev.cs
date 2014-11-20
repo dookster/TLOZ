@@ -25,16 +25,12 @@ public class InteractableRev : MonoBehaviour {
 
 	public float readingTime = 1000.0f;
 
-	#region Inventory Variables
-
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
 	public float invTargetYPos = 0.0f;
 
 	public Vector3 invCollidSize = new Vector3 (0.1f,0.1f,0.1f);
 	public Vector3 invCollidCent = new Vector3 (0.0f, 0.0f, 0.0f);
-
-	#endregion
 
 	private bool allowDrag;
 
@@ -79,11 +75,6 @@ public class InteractableRev : MonoBehaviour {
 			hideText();
 		}
 
-		if(Input.GetButtonDown ("Fire2")){
-
-			Debug.Log ("Name: " + gameObject.name + ", bounds: " + this.renderer.bounds.extents + "center: " + this.renderer.bounds.center);
-
-		}
 	}
 
 	public void ResetReadingTime () {

@@ -24,13 +24,13 @@ public class Inventory : MonoBehaviour {
 
 	public void addItem(GameObject item){
 		item.transform.parent = anchor;
-		InteractableRev interact = item.GetComponent<InteractableRev> ();
-		BoxCollider interactCollider = item.GetComponent<BoxCollider> ();
+		InteractableRev interact = item.GetComponent<InteractableRev> (); // Rev: Cache the item's InteractableRev component for speed
+		BoxCollider interactCollider = item.GetComponent<BoxCollider> (); // Rev: Cache the item's BoxColider component for speed
 		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, interact.invTargetYPos, -1.0f);
 		item.transform.localScale = interact.invTargetScale;
 		item.transform.localEulerAngles = interact.invTargetRotation;
-		if(interactCollider){
-			interactCollider.center = interact.invCollidCent;
+		if(interactCollider){ 									// Rev: If we've found a box collider for the item...
+			interactCollider.center = interact.invCollidCent; 	// Rev: ...apply new center and size settings in the InteractableRev to the collider.
 			interactCollider.size = interact.invCollidSize;
 		}
 		item.layer = LayerMask.NameToLayer("UI");
