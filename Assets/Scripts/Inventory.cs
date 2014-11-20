@@ -8,9 +8,13 @@ public class Inventory : MonoBehaviour {
 	public float itemDistance = 0.5f;
 	public List<GameObject> items = new List<GameObject>();
 
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+
+
 	}
 	
 	// Update is called once per frame
@@ -20,9 +24,15 @@ public class Inventory : MonoBehaviour {
 
 	public void addItem(GameObject item){
 		item.transform.parent = anchor;
-		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, item.GetComponent<InteractableRev> ().invTargetYPos, -1.0f);
-		item.transform.localScale = item.GetComponent<InteractableRev> ().invTargetScale;
-		item.transform.localEulerAngles = item.GetComponent<InteractableRev> ().invTargetRotation;
+		InteractableRev interact = item.GetComponent<InteractableRev> ();
+		BoxCollider interactCollider = item.GetComponent<BoxCollider> ();
+		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, interact.invTargetYPos, -1.0f);
+		item.transform.localScale = interact.invTargetScale;
+		item.transform.localEulerAngles = interact.invTargetRotation;
+		if(interactCollider){
+			interactCollider.center = interact.invCollidCent;
+			interactCollider.size = interact.invCollidSize;
+		}
 		item.layer = LayerMask.NameToLayer("UI");
 		item.tag = "Inventory";
 		items.Add(item);
@@ -42,13 +52,15 @@ public class Inventory : MonoBehaviour {
 	 */
 	public void settleItems(){
 		for(int n = 0 ; n < items.Count ; n++){
-			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", 0, "z", -1.0f, "time", 0.5f, "islocal", true));
+			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
+			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true));
 		}
 	}
 
 	public void settleItemsWithoutAnimation(){
 		for(int n = 0 ; n < items.Count ; n++){
-			items[n].transform.localPosition = new Vector3(0 + itemDistance * n, 0, -1.0f);
+			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
+			items[n].transform.localPosition = new Vector3(0 + itemDistance * n, yPos, -1.0f);
 		}
 	}
 
