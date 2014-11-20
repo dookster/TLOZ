@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour {
 
 	public void addItem(GameObject item){
 		item.transform.parent = anchor;
-		InteractableRev interact = item.GetComponent<InteractableRev> (); // Rev: Cache the item's InteractableRev component for speed
+		Interactable interact = item.GetComponent<Interactable> (); // Rev: Cache the item's InteractableRev component for speed
 		BoxCollider interactCollider = item.GetComponent<BoxCollider> (); // Rev: Cache the item's BoxColider component for speed
 		item.transform.localPosition = new Vector3(0 + itemDistance * items.Count, interact.invTargetYPos, -1.0f);
 		item.transform.localScale = interact.invTargetScale;
@@ -52,14 +52,14 @@ public class Inventory : MonoBehaviour {
 	 */
 	public void settleItems(){
 		for(int n = 0 ; n < items.Count ; n++){
-			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
+			float yPos = items[n].GetComponent<Interactable>().invTargetYPos;
 			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true));
 		}
 	}
 
 	public void settleItemsWithoutAnimation(){
 		for(int n = 0 ; n < items.Count ; n++){
-			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
+			float yPos = items[n].GetComponent<Interactable>().invTargetYPos;
 			items[n].transform.localPosition = new Vector3(0 + itemDistance * n, yPos, -1.0f);
 		}
 	}

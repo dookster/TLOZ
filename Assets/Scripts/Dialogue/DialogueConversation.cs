@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEditor; // Disable this before building final game
 
@@ -11,7 +11,7 @@ public class DialogueConversation : DialogueNode{
 	public GUIStyle editorStyle2;
 
 	public DialogueNode currentNode;
-	private InteractableRev interactable; // The interactable 'owning' this conversation
+	private Interactable interactable; // The interactable 'owning' this conversation
 
 	// Use this for initialization
 	void Start () {
@@ -91,7 +91,7 @@ public class DialogueConversation : DialogueNode{
 		GameFlow.instance.conversationUI.showOptions(this);
 	}
 
-	public void startConversation(InteractableRev owner){
+	public void startConversation(Interactable owner){
 		interactable = owner;
 		currentNode = this;
 

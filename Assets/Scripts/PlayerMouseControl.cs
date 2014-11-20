@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerMouseControl : MonoBehaviour {
@@ -6,7 +6,7 @@ public class PlayerMouseControl : MonoBehaviour {
 	public	GameObject		walkTo;
 	
 	public	NavMeshAgent	character01;
-	public  InteractableRev playerInteractable; // interactable 'dummy' item to pass to items when we're not dragging anything, lets them choose to be picked up etc.
+	public  Interactable playerInteractable; // interactable 'dummy' item to pass to items when we're not dragging anything, lets them choose to be picked up etc.
 
 	public 	Camera 	cameraA;
 	public	Camera	inventoryCamera; // Rev: Should set this up in Start, GameObject.Find etc.
@@ -17,9 +17,9 @@ public class PlayerMouseControl : MonoBehaviour {
 
 	// Rev: Change InteractableRev to Interactable if everything seems stable
 	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
-	private InteractableRev	currentWorldTarget; // If this isn't null the player should move towards it and interact when close enough
+	private Interactable	currentWorldTarget; // If this isn't null the player should move towards it and interact when close enough
 	[SerializeField] 
-	private InteractableRev currentItemToUse; // Item we're currently dragging around from the inventory
+	private Interactable currentItemToUse; // Item we're currently dragging around from the inventory
 	private Inventory		inventory;
 
 	public Texture2D cursorTextureNormal; // Rev: Initial attempt to set up custom cursor, could be useful for dynamic cursor
@@ -89,7 +89,7 @@ public class PlayerMouseControl : MonoBehaviour {
 			// Interactables
 
 			if (hit.transform.tag == "Interactable"){
-				InteractableRev interactable = hit.transform.GetComponent("InteractableRev") as InteractableRev; // Rev: Is this casting just to be certain?
+				Interactable interactable = hit.transform.GetComponent("InteractableRev") as Interactable; // Rev: Is this casting just to be certain?
 
 				if(interactable == null) Debug.LogError("Something has the Interactable tag, but not the script");
 
@@ -123,7 +123,7 @@ public class PlayerMouseControl : MonoBehaviour {
 					// KT: moving the item during click&drag is handled in the Interactable class, 
 					//     here we handle interaction when dropping an item onto another
 
-					currentItemToUse = hit.transform.gameObject.GetComponent<InteractableRev>();
+					currentItemToUse = hit.transform.gameObject.GetComponent<Interactable>();
 					haveClickedInv = true;
 				}
 			} else if (Input.GetButtonDown ("Fire1")){
