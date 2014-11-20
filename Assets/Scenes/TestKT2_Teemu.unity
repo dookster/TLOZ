@@ -1427,8 +1427,6 @@ MonoBehaviour:
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events: []
@@ -1829,7 +1827,7 @@ Transform:
   m_GameObject: {fileID: 386166957}
   m_LocalRotation: {x: -7.75984404e-07, y: -.707106829, z: -.707106829, w: 8.00662008e-07}
   m_LocalPosition: {x: -.261645168, y: .74165076, z: 3.46751499}
-  m_LocalScale: {x: 1.10000002, y: 1.10000002, z: 1.10000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1435987650}
   m_RootOrder: 1
@@ -1908,8 +1906,6 @@ MonoBehaviour:
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events: []
@@ -5009,8 +5005,6 @@ MonoBehaviour:
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 821365346}
   sayNPCShadow: {fileID: 790466793}
   events: []
@@ -5884,10 +5878,8 @@ MonoBehaviour:
   interactDistance: 1
   readingTime: 100
   invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
-  invTargetScale: {x: 4.59184217, y: 4.59184217, z: 4.59184217}
+  invTargetScale: {x: 7.23999977, y: 7.23999977, z: 7.23999977}
   invTargetYPos: -.150000006
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -6044,8 +6036,6 @@ MonoBehaviour:
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -6228,8 +6218,6 @@ MonoBehaviour:
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -6511,8 +6499,6 @@ MonoBehaviour:
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -7322,7 +7308,7 @@ Transform:
   m_GameObject: {fileID: 1404082194}
   m_LocalRotation: {x: -4.3297803e-17, y: .707106769, z: .707106888, w: -4.32978096e-17}
   m_LocalPosition: {x: 5.18879843, y: -0, z: .408419758}
-  m_LocalScale: {x: 1, y: .24999997, z: .24999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1435987650}
   m_RootOrder: 3
@@ -7784,8 +7770,6 @@ MonoBehaviour:
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -8889,7 +8873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19500000, guid: 7b3d687d0665e304b82e0a3813f75e80, type: 2}
       propertyPath: m_StoppingDistance
-      value: .699999988
+      value: .200000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b3d687d0665e304b82e0a3813f75e80, type: 2}
@@ -9908,7 +9892,7 @@ Transform:
   m_GameObject: {fileID: 1874253475}
   m_LocalRotation: {x: .1830125, y: .683012724, z: .683012843, w: -.183012411}
   m_LocalPosition: {x: 4.52407885, y: .739998937, z: 3.62513423}
-  m_LocalScale: {x: 1, y: .249999985, z: .24999997}
+  m_LocalScale: {x: 1, y: .249999985, z: 1}
   m_Children: []
   m_Father: {fileID: 1435987650}
   m_RootOrder: 4
@@ -9975,8 +9959,6 @@ MonoBehaviour:
   invTargetRotation: {x: 22.8317299, y: 34.1046715, z: 150.141693}
   invTargetScale: {x: 5.38652086, y: 1.22242701, z: 1.22242701}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events: []
@@ -10087,8 +10069,6 @@ MonoBehaviour:
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events: []
@@ -10588,8 +10568,6 @@ MonoBehaviour:
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
-  invCollidSize: {x: .100000001, y: .100000001, z: .100000001}
-  invCollidCent: {x: 0, y: 0, z: 0}
   sayNPC: {fileID: 1294374038}
   sayNPCShadow: {fileID: 1392485246}
   events:
@@ -11348,7 +11326,7 @@ NavMeshAgent:
   m_Acceleration: 64
   avoidancePriority: 50
   m_AngularSpeed: 720
-  m_StoppingDistance: .699999988
+  m_StoppingDistance: .200000003
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

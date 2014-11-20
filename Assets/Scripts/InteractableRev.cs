@@ -28,10 +28,7 @@ public class InteractableRev : MonoBehaviour {
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
 	public float invTargetYPos = 0.0f;
-
-	public Vector3 invCollidSize = new Vector3 (0.1f,0.1f,0.1f);
-	public Vector3 invCollidCent = new Vector3 (0.0f, 0.0f, 0.0f);
-
+	
 	private bool allowDrag;
 
 	// Conversation stuff (no reason we can't theoretically start a conversation with an object)
@@ -73,6 +70,12 @@ public class InteractableRev : MonoBehaviour {
 		
 		if(readingTime >= GameFlow.instance.readingSpeed){
 			hideText();
+		}
+
+		if(Input.GetButtonDown("Fire2")){
+
+			Debug.Log (transform.name + " " + GetComponent<MeshRenderer>().bounds.extents);
+
 		}
 
 	}

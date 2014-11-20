@@ -30,8 +30,10 @@ public class Inventory : MonoBehaviour {
 		item.transform.localScale = interact.invTargetScale;
 		item.transform.localEulerAngles = interact.invTargetRotation;
 		if(interactCollider){ 									// Rev: If we've found a box collider for the item...
-			interactCollider.center = interact.invCollidCent; 	// Rev: ...apply new center and size settings in the InteractableRev to the collider.
-			interactCollider.size = interact.invCollidSize;
+//			interactCollider.center = interact.invCollidCent; 	// Rev: ...apply new center and size settings in the InteractableRev to the collider.
+//			interactCollider.size = interact.invCollidSize;
+			Destroy(interactCollider);
+			item.gameObject.AddComponent("BoxCollider");
 		}
 		item.layer = LayerMask.NameToLayer("UI");
 		item.tag = "Inventory";
@@ -52,7 +54,7 @@ public class Inventory : MonoBehaviour {
 	 */
 	public void settleItems(){
 		for(int n = 0 ; n < items.Count ; n++){
-			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
+			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos; // Rev: Get customised y position
 			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true));
 		}
 	}
