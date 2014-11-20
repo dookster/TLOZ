@@ -740,6 +740,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
@@ -1144,6 +1145,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: Freshly brewed!
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
@@ -2070,6 +2072,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 0b7e79e1e8b0b384bab1fef95d220808, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7061c4401cfc2b54cb520c65837fbda4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b7e79e1e8b0b384bab1fef95d220808, type: 3}
   m_RootGameObject: {fileID: 1282562476}
@@ -2385,10 +2391,9 @@ MonoBehaviour:
   dTimeTargetSpeed: 1
   dTimeModified: 0
   pause: 0
-  readingTime: 0
   readingSpeed: 2
-  sayChar: {fileID: 0}
-  sayCharShadow: {fileID: 0}
+  playerInteractable: {fileID: 0}
+  conversationUI: {fileID: 0}
 --- !u!4 &798534030
 Transform:
   m_ObjectHideFlags: 0
@@ -3581,9 +3586,10 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
-  invTargetScale: {x: 4.59184217, y: 4.59184217, z: 4.59184217}
-  invTargetYPos: -.150000006
+  invTargetScale: {x: 8.51730156, y: 8.51729965, z: 8.51729965}
+  invTargetYPos: -.239999995
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   events:
@@ -3639,6 +3645,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
@@ -3820,6 +3827,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
@@ -4037,7 +4045,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 437d10b2893661d4b91b79517995e4ca, type: 2}
+  - {fileID: 2100000, guid: 7061c4401cfc2b54cb520c65837fbda4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4098,6 +4106,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
@@ -4989,6 +4998,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 45, y: 45, z: 45}
   invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
   invTargetYPos: 0
@@ -6913,6 +6923,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 22.8317299, y: 34.1046715, z: 150.141693}
   invTargetScale: {x: 5.38652086, y: 1.22242701, z: 1.22242701}
   invTargetYPos: 0
@@ -7049,6 +7060,7 @@ MonoBehaviour:
   justLook: 1
   lookDescription: My coffee maker!
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
@@ -7281,6 +7293,7 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
