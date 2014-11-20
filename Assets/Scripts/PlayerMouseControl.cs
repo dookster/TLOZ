@@ -74,6 +74,7 @@ public class PlayerMouseControl : MonoBehaviour {
 			}
 		}
 
+		
 		// Handle click input
 		Ray ray = cameraA.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;

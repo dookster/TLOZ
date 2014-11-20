@@ -61,7 +61,7 @@ public class InteractableKT : MonoBehaviour {
 		if(actionLine != null) { // Rev: Attempt to shift debug text into sayChar 3Dtext
 			sayChar.text = "Beep, boop. Interacting";
 			sayCharShadow.text = "Beep, boop. Interacting";
-			GameFlow.instance.ResetReadingTime();
+			//GameFlow.instance.ResetReadingTime();
 		}
 	}
 	

@@ -16,12 +16,14 @@ public class InteractableRev : MonoBehaviour {
 	private TextMesh actionLine; // Rev: Happy to rename this - it's the constructed sentence that describes what left-clicking will do. =)
 	private TextMesh actionLineShadow;
 
-	private TextMesh sayChar;
-	private TextMesh sayCharShadow;
+	//private TextMesh sayChar;
+	//private TextMesh sayCharShadow;
 
 	private PlayerMouseControl playMousCont;
 	private Camera uiCamera;
 	private Inventory inventory;
+
+	public float readingTime = 1000.0f;
 
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
@@ -54,9 +56,6 @@ public class InteractableRev : MonoBehaviour {
 		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
 		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
 
-		sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> (); // Rev: NOTE! This will have to be changed when we get the Maja PC character!
-		sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> (); // Rev: This too!
-
 		playMousCont = GameObject.Find ("Main Camera").GetComponent<PlayerMouseControl> ();
 
 		uiCamera = GameObject.Find("InventoryCamera").GetComponent<Camera>();
@@ -65,7 +64,22 @@ public class InteractableRev : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(readingTime < GameFlow.instance.readingSpeed){
+			readingTime += Time.deltaTime;
+		}
+		
+		if(readingTime >= GameFlow.instance.readingSpeed){
+			hideText();
+		}
+	}
 
+	public void ResetReadingTime () {
+		readingTime = 0.0f;
+		//Debug.Log ("Resetting timer for reading text speed");
+	}
+
+	public bool isTalking(){
+		return readingTime < GameFlow.instance.readingSpeed;
 	}
 
 	void OnMouseDown() {
@@ -127,7 +141,7 @@ public class InteractableRev : MonoBehaviour {
 		foreach(MatchEvent matchEvent in events){
 			if(matchEvent.itemName.Equals(otherItem.name)){
 				// Player comment
-				playerSay(matchEvent.comment);
+				GameFlow.instance.playerSay(matchEvent.comment);
 
 				// Picking items up
 				if(matchEvent.pickUp) inventory.addItem(gameObject);
@@ -158,25 +172,20 @@ public class InteractableRev : MonoBehaviour {
 		}
 
 		// We don't have any events for this item, do something generic
-		playerSay("Uh... Hm... Huh?");
-
-
+		GameFlow.instance.playerSay("Uh... Hm... Huh?");
 	}
 
 	public void say(string text){
+		if(sayNPC == null) return;
 		sayNPC.text = text;
 		sayNPCShadow.text = text;
+		ResetReadingTime();
 	}
 
 	private void hideText(){
+		if(sayNPC == null) return;
 		sayNPC.text = "";
 		sayNPCShadow.text = "";
-	}
-
-	public void playerSay(string text){
-		sayChar.text = text;
-		sayCharShadow.text = text;
-		GameFlow.instance.ResetReadingTime();
 	}
 
 	public bool withinRange(Vector3 playerPosition){	// Kristian, does it make sense to replace this with a sphere collider test? More performant, visual.

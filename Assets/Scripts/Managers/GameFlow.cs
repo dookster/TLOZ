@@ -7,7 +7,6 @@ public class GameFlow : MonoBehaviour {
 	private static GameFlow _instance;
 
 	public static GameFlow instance{
-
 		get{
 			if(_instance == null){
 				_instance = GameObject.FindObjectOfType<GameFlow>();
@@ -25,12 +24,12 @@ public class GameFlow : MonoBehaviour {
 	public	float	dTimeModified; // This should be a property!
 	[SerializeField]	bool	pause = false;
 
-	public float readingTime = 0.0f;
+
 	public float readingSpeed = 2.0f;
 
-	public TextMesh sayChar; // Rev: Should probably make this private, hook up to PCMaja.
-	public TextMesh sayCharShadow;
+	public InteractableRev playerInteractable;
 
+	public ConversationUI conversationUI;
 
 	void OnEnable(){
 		// Listen for any broadcasts of the type 'event'
@@ -43,10 +42,10 @@ public class GameFlow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-		sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
-		sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
-
+		//sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
+		//sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
+		playerInteractable = GameObject.Find ("Player").GetComponent<InteractableRev>();
+		conversationUI = GameObject.Find("Conversation").GetComponent<ConversationUI>();
 	}
 	
 	// Update is called once per frame
@@ -58,12 +57,7 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
-		readingTime += Time.deltaTime;
-		
-		if(readingTime >= readingSpeed){ // Rev: Timer for character dialogue. Should be global in gameflow? Should be coroutine?
-			sayChar.text = null;
-			sayCharShadow.text = null;
-		}
+
 	}
 
 	/**
@@ -79,11 +73,11 @@ public class GameFlow : MonoBehaviour {
 		Debug.Log("Detected event: " + eventName);
 	}
 
-	public void ResetReadingTime () {
-		readingTime = 0.0f;
-		Debug.Log ("Resetting timer for reading text speed");
+	public void playerSay(string text){
+		playerInteractable.say(text);
+		//sayChar.text = text;
+		//sayCharShadow.text = text;
+		//ResetReadingTime();
 	}
-
-
 
 }

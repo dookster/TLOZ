@@ -47,13 +47,13 @@ public class DialogueNode : MonoBehaviour {
 		}
 	}
 
-	public void showOptions(){
-		int n = 1;
-		foreach(DialogueNode node in children){
-			Debug.Log("\n" + n + ": " + node.name);
-			n++;
-		}
-	}
+//	public void showOptions(){
+//		int n = 1;
+//		foreach(DialogueNode node in children){
+//			Debug.Log("\n" + n + ": " + node.name);
+//			n++;
+//		}
+//	}
 	
 	// Update is called once per frame
 	void Update () {
