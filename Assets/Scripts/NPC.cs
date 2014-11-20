@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NPC : Interactable {
+public class NPC : InteractableRev {
 
 
 	// Use this for initialization

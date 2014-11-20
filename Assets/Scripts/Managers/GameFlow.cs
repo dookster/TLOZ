@@ -27,7 +27,7 @@ public class GameFlow : MonoBehaviour {
 
 	public float readingSpeed = 2.0f;
 
-	public Interactable playerInteractable;
+	public InteractableRev playerInteractable;
 
 	public ConversationUI conversationUI;
 
@@ -44,7 +44,7 @@ public class GameFlow : MonoBehaviour {
 	void Start () {
 		//sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
 		//sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
-		playerInteractable = GameObject.Find ("Player").GetComponent<Interactable>();
+		playerInteractable = GameObject.Find ("Player").GetComponent<InteractableRev>();
 		conversationUI = GameObject.Find("Conversation").GetComponent<ConversationUI>();
 	}
 	

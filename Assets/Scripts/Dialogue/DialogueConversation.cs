@@ -11,7 +11,7 @@ public class DialogueConversation : DialogueNode{
 	public GUIStyle editorStyle2;
 
 	public DialogueNode currentNode;
-	private Interactable interactable; // The interactable 'owning' this conversation
+	private InteractableRev interactable; // The interactable 'owning' this conversation
 
 	// Use this for initialization
 	void Start () {
@@ -91,7 +91,7 @@ public class DialogueConversation : DialogueNode{
 		GameFlow.instance.conversationUI.showOptions(this);
 	}
 
-	public void startConversation(Interactable owner){
+	public void startConversation(InteractableRev owner){
 		interactable = owner;
 		currentNode = this;
 
