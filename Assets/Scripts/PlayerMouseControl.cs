@@ -46,6 +46,8 @@ public class PlayerMouseControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+
 		// KT: Show the inventory when pointer is in top 1/8th of the screen
 
 		if (Input.mousePosition.y < Screen.height - Screen.height / 8){
@@ -74,7 +76,11 @@ public class PlayerMouseControl : MonoBehaviour {
 			}
 		}
 
-		
+
+		// !!! Skipping almost all updates with this, could be handled better
+		// Ignore input here while we're talking
+		if(GameFlow.instance.inputPaused) return;
+
 		// Handle click input
 		Ray ray = cameraA.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
