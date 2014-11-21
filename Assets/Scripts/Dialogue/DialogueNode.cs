@@ -33,6 +33,8 @@ public class DialogueNode : MonoBehaviour {
 		style2 = GetComponentInParent<DialogueConversation>().editorStyle2;
 
 		loadChildren();
+
+		response = response.Replace ("NUULINE", "\n");
 	}
 
 	public void loadChildren(){

@@ -18,6 +18,8 @@ public class DialogueConversation : DialogueNode{
 		loadChildren();
 		setGizStyle1(editorStyle);
 		setGizStyle2(editorStyle2);
+
+		response = response.Replace ("NUULINE", "\n");
 	}
 	
 	// Update is called once per frame

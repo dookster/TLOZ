@@ -59,6 +59,18 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
+		if (Input.GetKeyDown(KeyCode.RightBracket)){
+			readingSpeed += 1.0f;
+			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
+			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+		}
+
+		if (Input.GetKeyDown(KeyCode.LeftBracket)){
+			readingSpeed -= 1.0f;
+			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
+			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+		}
+
 
 	}
 
