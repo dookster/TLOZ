@@ -31,8 +31,6 @@ public class GameFlow : MonoBehaviour {
 
 	public ConversationUI conversationUI;
 
-	public bool inputPaused; // Set to true to keep the player from moving the character, e.g. in a conversation
-
 	void OnEnable(){
 		// Listen for any broadcasts of the type 'event'
 		Messenger<string>.AddListener("event", HandleEvent);

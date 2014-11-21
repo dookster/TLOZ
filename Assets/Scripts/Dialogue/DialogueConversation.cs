@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor; // Disable this before building final game
 
 /**
  * Root node of a conversation
@@ -16,21 +17,28 @@ public class DialogueConversation : DialogueNode{
 	void Start () {
 		currentNode = this;
 		loadChildren();
-		setGizStyle1(editorStyle);
-		setGizStyle2(editorStyle2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		// We should probably handle as much input as possible in one place
+		if(Input.GetKeyUp("1")){
+			selectConversationOption(0);
+		}
+		if(Input.GetKeyUp("2")){
+			selectConversationOption(1);
+		}
+		if(Input.GetKeyUp("3")){
+			selectConversationOption(2);
+		}
 	}
 
 	/**
 	 * Select the conversation option with the given index
 	 */
 	public void selectConversationOption(int n){
-		if(n < currentNode.getChildren().Count){
-			currentNode = currentNode.getChildren()[n];
+		if(n < currentNode.children.Count){
+			currentNode = currentNode.children[n];
 			talk ();
 		}
 	}
@@ -50,12 +58,8 @@ public class DialogueConversation : DialogueNode{
 
 	private IEnumerator sayPlayerLine() {
 		if(currentNode.name != null && currentNode.name.Length > 0){
-			if(keyWordMatch(currentNode.name)){
-				// Current node is a keyword, don't say anything
-				return true;
-			}
 			GameFlow.instance.playerSay(currentNode.name);
-
+			//yield return new WaitForSeconds(3); // should adjust time length, or do something else so we can skip lines on input
 			while(GameFlow.instance.playerInteractable.isTalking())
 				yield return null;
 		}
@@ -66,15 +70,20 @@ public class DialogueConversation : DialogueNode{
 	private IEnumerator sayNPCLine() {
 		if(currentNode.response != null && currentNode.response.Length > 0){
 			interactable.say(currentNode.response);
-
+			//yield return new WaitForSeconds(3); // should adjust time length, or do something else so we can skip lines on input
 			while(interactable.isTalking())
 				yield return null;
 		}
-		
-		if(currentNode.getChildren().Count > 1){
+
+		if(currentNode.name == "END"){
+			// Conversation is done
+			// How should we handle that?
+		}
+		else if(currentNode.children.Count > 1){
 			showOptions();
 		} else {
-			selectConversationOption(0);
+			currentNode = currentNode.children[0];
+			talk();
 		}
 	}
 
@@ -83,9 +92,6 @@ public class DialogueConversation : DialogueNode{
 	}
 
 	public void startConversation(InteractableRev owner){
-		// Perhaps we should place this somewhere else?
-		GameFlow.instance.inputPaused = true;
-
 		interactable = owner;
 		currentNode = this;
 
@@ -93,17 +99,5 @@ public class DialogueConversation : DialogueNode{
 		StartCoroutine(sayNPCLine());
 	}
 
-	/**
-	 * Check if the given string matches any keyword (END, GOTO etc) and handle it.
-	 * Return true if it was a match so the current conversation doesn't try to continue.
-	 */
-	private bool keyWordMatch(string key){
-		if(key.Equals("END")){
-			Debug.Log("Conversation END");
-			GameFlow.instance.inputPaused = false;
-			return true;
-		}
-		return false;
-	}
 
 }
