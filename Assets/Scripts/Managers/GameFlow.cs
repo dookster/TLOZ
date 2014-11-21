@@ -31,6 +31,8 @@ public class GameFlow : MonoBehaviour {
 
 	public ConversationUI conversationUI;
 
+	public bool inputPaused; // Set to true to keep the player from moving the character, e.g. in a conversation
+
 	void OnEnable(){
 		// Listen for any broadcasts of the type 'event'
 		Messenger<string>.AddListener("event", HandleEvent);
@@ -56,6 +58,18 @@ public class GameFlow : MonoBehaviour {
 		Mathf.Clamp (deltaTimeModifier, 0.0f, 1.0f);
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
+
+		if (Input.GetKeyDown(KeyCode.RightBracket)){
+			readingSpeed += 1.0f;
+			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
+			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+		}
+
+		if (Input.GetKeyDown(KeyCode.LeftBracket)){
+			readingSpeed -= 1.0f;
+			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
+			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+		}
 
 
 	}

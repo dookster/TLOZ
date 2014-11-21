@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using UnityEditor; // Disable this before building final game
+//using UnityEditor; // Disable this before building final game
 
 /**
  * Represents a single connection in a conversation. 
@@ -22,8 +22,8 @@ public class DialogueNode : MonoBehaviour {
 
 	private GUIStyle style;
 	private GUIStyle style2;
-
-	public List<DialogueNode> children = new List<DialogueNode>();
+	 	
+	private List<DialogueNode> children = new List<DialogueNode>();
 	public DialogueNode parentNode;
 
 	// Use this for initialization
@@ -33,9 +33,13 @@ public class DialogueNode : MonoBehaviour {
 		style2 = GetComponentInParent<DialogueConversation>().editorStyle2;
 
 		loadChildren();
+
+		response = response.Replace ("NUULINE", "\n");
 	}
 
 	public void loadChildren(){
+		children.Clear();
+
 		// Get a reference to the parent if it's a DialogueNode
 		if(transform.parent != null){
 			parentNode = transform.parent.GetComponent<DialogueNode>();
@@ -46,33 +50,33 @@ public class DialogueNode : MonoBehaviour {
 			children.Add(transform.GetChild(n).GetComponent<DialogueNode>());
 		}
 	}
-
-//	public void showOptions(){
-//		int n = 1;
-//		foreach(DialogueNode node in children){
-//			Debug.Log("\n" + n + ": " + node.name);
-//			n++;
-//		}
-//	}
 	
+
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	void OnDrawGizmos() {
-		if(style == null) style = GetComponentInParent<DialogueConversation>().editorStyle;
-		if(style2 == null) style2 = GetComponentInParent<DialogueConversation>().editorStyle2;
-		Vector3 labelPos = new Vector3(transform.position.x - transform.localScale.x/4, transform.position.y , transform.position.z);
-
-		if(parentNode != null) Handles.DrawDottedLine(transform.position, parentNode.transform.position, 5);
-
-		Handles.Label(labelPos, "\n\n"+ "  Response:                                                     '\n  " + response + " \n .", style2);
-		Handles.Label(labelPos, " * " + gameObject.name, style);
-
+	public GUIStyle getGizStyle1(){
+		return style;
 	}
 
+	public GUIStyle getGizStyle2(){
+		return style2;
+	}
 
+	public void setGizStyle1(GUIStyle gizStyle){
+		style = gizStyle;
+	}
+
+	public void setGizStyle2(GUIStyle gizStyle){
+		style2 = gizStyle;
+	}
+
+	public List<DialogueNode> getChildren(){
+		return children;
+	}
+	
 
 }
 
