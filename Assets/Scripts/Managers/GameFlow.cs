@@ -33,6 +33,27 @@ public class GameFlow : MonoBehaviour {
 
 	public bool inputPaused; // Set to true to keep the player from moving the character, e.g. in a conversation
 
+	private TextMesh actionLine; // Rev: Happy to rename this - it's the constructed sentence that describes what left-clicking will do. =)
+	private TextMesh actionLineShadow;
+
+	private TextMesh 	debugStatus;
+	private bool		debugStatusVisible = false;
+
+	public float 	actionLineTime = 0.0f;
+	public bool 	actionLineReset = false;
+
+	public bool		cutsceneIntro 		= false;
+	public bool		eavesdropSetup 		= false;
+	public bool		cutsceneEnvelope 	= false;
+	public bool		sealedSetup			= false;
+	public bool		cutsceneMortar		= false;
+	public bool		whiskeySetup		= false;
+	public bool		computerSetup		= false;
+	public bool		cutsceneConfront	= false;
+	public bool		finaleSetup			= false;
+	public bool		cutsceneOutro		= false;
+	public bool		cutsceneCredits		= false;
+	
 	void OnEnable(){
 		// Listen for any broadcasts of the type 'event'
 		Messenger<string>.AddListener("event", HandleEvent);
@@ -48,6 +69,11 @@ public class GameFlow : MonoBehaviour {
 		//sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
 		playerInteractable = GameObject.Find ("Player").GetComponent<InteractableRev>();
 		conversationUI = GameObject.Find("Conversation").GetComponent<ConversationUI>();
+
+		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
+		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
+
+		debugStatus = GameObject.Find ("DebugStatus").GetComponent<TextMesh> ();
 	}
 	
 	// Update is called once per frame
@@ -59,21 +85,67 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
-		if (Input.GetKeyDown(KeyCode.RightBracket)){
-			readingSpeed += 1.0f;
+//		if (actionLine != null) {
+//			actionLine.text = null;
+//			actionLineShadow.text = null;
+//		}
+
+		if (Input.GetKeyDown(KeyCode.RightBracket) && actionLine != null){
+			readingSpeed += 0.5f;
 			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
-			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+			actionLine.text = "ReadingSpeed: " + readingSpeed;
+			actionLineTime = 0.0f;
+			actionLineReset = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.LeftBracket)){
-			readingSpeed -= 1.0f;
+		if (Input.GetKeyDown(KeyCode.LeftBracket) && actionLine != null){
+			readingSpeed -= 0.5f;
 			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
-			Debug.Log("ReadingSpeed: " + readingSpeed + ". Put this into GUI!");
+			actionLine.text = "ReadingSpeed: " + readingSpeed;
+			actionLineTime = 0.0f;
+			actionLineReset = true;
 		}
 
+		if(actionLineTime < GameFlow.instance.readingSpeed){
+			actionLineTime += Time.deltaTime;
+		}
+		
+		if(actionLineTime >= GameFlow.instance.readingSpeed && actionLineReset){
+			hideActionLine();
+			actionLineReset = false;
+		}
+
+		if(Input.GetKeyDown (KeyCode.KeypadEnter)){
+			if(debugStatusVisible){
+				debugStatus.text = null;
+				debugStatusVisible = false;
+			}else if (!debugStatusVisible){
+				Debug.Log("Should be displaying Status...");
+				debugStatusSetup();
+				debugStatusVisible = true;
+			}
+		}
+
+		if(Input.GetKeyDown (KeyCode.Keypad1))CutsceneIntro();
+		if(Input.GetKeyDown (KeyCode.Keypad2))EavesdropSetup();
+		if(Input.GetKeyDown (KeyCode.Keypad3))CutsceneEnvelope();
+		if(Input.GetKeyDown (KeyCode.Keypad4))SealedSetup();
+		if(Input.GetKeyDown (KeyCode.Keypad5))CutsceneMortar();
+		if(Input.GetKeyDown (KeyCode.Keypad6))WhiskeySetup();
+		if(Input.GetKeyDown (KeyCode.Keypad7))ComputerSetup();
+		if(Input.GetKeyDown (KeyCode.Keypad8))CutsceneConfront();
+		if(Input.GetKeyDown (KeyCode.Keypad9))FinaleSetup();
+		if(Input.GetKeyDown (KeyCode.Keypad0))CutsceneOutro();
+		if(Input.GetKeyDown (KeyCode.KeypadPeriod))CutsceneCredits();
 
 	}
 
+	private void hideActionLine(){
+		if(actionLine == null) return;
+		actionLine.text = "";
+		actionLineShadow.text = "";
+	}
+	
 	/**
 	 * Super generic method, called whenever anything sends a broadcast with the name 'event'. Added here mainly to show
 	 * how other scripts can subscribe to this broadcast if they need to. 
@@ -94,4 +166,72 @@ public class GameFlow : MonoBehaviour {
 		//ResetReadingTime();
 	}
 
+	public void CutsceneIntro(){
+		cutsceneIntro = true;
+		debugStatusSetup();
+	}
+
+	public void EavesdropSetup(){
+		eavesdropSetup = true;
+		debugStatusSetup();
+	}
+
+	public void CutsceneEnvelope(){
+		cutsceneEnvelope = true;
+		debugStatusSetup();
+	}
+
+	public void SealedSetup(){
+		sealedSetup = true;
+		debugStatusSetup();
+	}
+
+	public void CutsceneMortar(){
+		cutsceneMortar = true;
+		debugStatusSetup();
+	}
+
+	public void WhiskeySetup(){
+		whiskeySetup = true;
+		debugStatusSetup();
+	}
+
+	public void ComputerSetup(){
+		computerSetup = true;
+		debugStatusSetup();
+	}
+
+	public void CutsceneConfront(){
+		cutsceneConfront = true;
+		debugStatusSetup();
+	}
+
+	public void FinaleSetup(){
+		finaleSetup = true;
+		debugStatusSetup();
+	}
+
+	public void CutsceneOutro(){
+		cutsceneOutro = true;
+		debugStatusSetup();
+	}
+
+	public void CutsceneCredits(){
+		cutsceneCredits = true;
+		debugStatusSetup();
+	}
+	
+	public void debugStatusSetup () {
+		debugStatus.text = 	"1 Cutscene Intro: " + cutsceneIntro + "\n" +
+							"2 Eavesdrop Setup: " + eavesdropSetup + "\n" +
+							"3 Cutscene Envelope: " + cutsceneEnvelope + "\n" +
+							"4 Sealed Setup: " + sealedSetup + "\n" +
+							"5 Cutscene Mortar: " + cutsceneMortar + "\n" +
+							"6 Whiskey Setup: " + whiskeySetup + "\n" +
+							"7 Computer Setup: " + computerSetup + "\n" +
+							"8 Cutscene Confront: " + cutsceneConfront + "\n" +
+							"9 Finale Setup: " + finaleSetup + "\n" +
+							"0 Cutscene Outro: " + cutsceneOutro + "\n" +
+							". Cutscene Credits: " + cutsceneCredits;
+	}
 }

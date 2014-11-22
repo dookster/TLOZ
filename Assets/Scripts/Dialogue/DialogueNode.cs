@@ -31,7 +31,7 @@ public class DialogueNode : MonoBehaviour {
 		// Find style in parents
 		style = GetComponentInParent<DialogueConversation>().editorStyle;
 		style2 = GetComponentInParent<DialogueConversation>().editorStyle2;
-
+		
 		loadChildren();
 
 		response = response.Replace ("NUULINE", "\n");

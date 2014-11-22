@@ -23,7 +23,9 @@ public class InteractableRev : MonoBehaviour {
 	private Camera uiCamera;
 	private Inventory inventory;
 
-	public float readingTime = 1000.0f;
+	public float 	readingTime = 1000.0f;
+	public float 	actionLineTime = 0.0f;
+	private bool 	actionLineReset = false;
 
 	public Vector3 invTargetRotation = new Vector3 (0.0f,0.0f,0.0f);
 	public Vector3 invTargetScale = new Vector3(1.0f,1.0f,1.0f);
@@ -60,6 +62,8 @@ public class InteractableRev : MonoBehaviour {
 
 		uiCamera = GameObject.Find("InventoryCamera").GetComponent<Camera>();
 		inventory = GameObject.Find ("Inventory").GetComponent<Inventory>();
+
+		ResetActionLineTime ();
 	}
 	
 	// Update is called once per frame
@@ -72,21 +76,14 @@ public class InteractableRev : MonoBehaviour {
 			hideText();
 		}
 
-		if(Input.GetButtonDown("Fire2")){
-
-			Debug.Log (transform.name + " " + GetComponent<MeshRenderer>().bounds.extents);
-
+		if(actionLineTime < GameFlow.instance.readingSpeed){
+			actionLineTime += Time.deltaTime;
 		}
 
-	}
-
-	public void ResetReadingTime () {
-		readingTime = 0.0f;
-		//Debug.Log ("Resetting timer for reading text speed");
-	}
-
-	public bool isTalking(){
-		return readingTime < GameFlow.instance.readingSpeed;
+		if(actionLineTime >= GameFlow.instance.readingSpeed && actionLineReset){
+			hideActionLine();
+			actionLineReset = false;
+		}
 	}
 
 	void OnMouseDown() {
@@ -115,10 +112,14 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	void OnMouseOver () {
+		playMousCont.CursorHighlight();
+	}
+
+	void OnMouseEnter () {
 		if(actionLine != null) {
-			actionLine.text = name;
-			actionLineShadow.text = name;
-			playMousCont.CursorHighlight();
+			ResetActionLineTime();
+			actionLine.text = gameObject.name;
+			actionLineShadow.text = gameObject.name;
 		}
 	}
 	
@@ -126,8 +127,9 @@ public class InteractableRev : MonoBehaviour {
 		if (actionLine != null) {
 			actionLine.text = null;
 			actionLineShadow.text = null;
-			playMousCont.CursorNormal();
+			// actionLineReset = false;
 		}
+		playMousCont.CursorNormal();
 	}
 
 	/**
@@ -182,6 +184,20 @@ public class InteractableRev : MonoBehaviour {
 		GameFlow.instance.playerSay("Uh... Hm... Huh?");
 	}
 
+	public void ResetReadingTime () {
+		readingTime = 0.0f;
+		//Debug.Log ("Resetting timer for reading text speed");
+	}
+	
+	public void ResetActionLineTime() {
+		actionLineTime = 0.0f;
+		actionLineReset = true;
+	}
+	
+	public bool isTalking(){
+		return readingTime < GameFlow.instance.readingSpeed;
+	}
+
 	public void say(string text){
 		if(sayNPC == null) return;
 		sayNPC.text = text;
@@ -193,6 +209,12 @@ public class InteractableRev : MonoBehaviour {
 		if(sayNPC == null) return;
 		sayNPC.text = "";
 		sayNPCShadow.text = "";
+	}
+
+	private void hideActionLine(){
+		if(actionLine == null) return;
+		actionLine.text = "";
+		actionLineShadow.text = "";
 	}
 
 	public bool withinRange(Vector3 playerPosition){	// Kristian, does it make sense to replace this with a sphere collider test? More performant, visual.

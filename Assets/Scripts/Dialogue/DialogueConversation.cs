@@ -19,7 +19,7 @@ public class DialogueConversation : DialogueNode{
 		setGizStyle1(editorStyle);
 		setGizStyle2(editorStyle2);
 
-		response = response.Replace ("NUULINE", "\n");
+		response = response.Replace ("NUULINE", "\n"); // Rev: On start, this replaces the word NUULINE with an escape character which forces the following text onto a new line
 	}
 	
 	// Update is called once per frame
