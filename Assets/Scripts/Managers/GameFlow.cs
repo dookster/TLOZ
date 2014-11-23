@@ -75,6 +75,8 @@ public class GameFlow : MonoBehaviour {
 		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
 
 		debugStatus = GameObject.Find ("DebugStatus").GetComponent<TextMesh> ();
+
+		iTween.CameraFadeAdd ();
 	}
 	
 	// Update is called once per frame
@@ -166,10 +168,19 @@ public class GameFlow : MonoBehaviour {
 		//ResetReadingTime();
 	}
 
+	// Rev: Function that can be triggered by animation clip
+	public void PauseInput(int isTrue){
+		if (isTrue == 0){
+			inputPaused = false;
+		} else if (isTrue == 1){
+			inputPaused = true;
+		}
+	}
+
 	// Rev: Following is a list of functions for setting up minor repeating events in the game.
 
 	public void MakingCoffee() {
-		Debug.Log ("I am now making coffee!");
+		animation.Play("MakeCoffee");
 	}
 
 
@@ -229,6 +240,14 @@ public class GameFlow : MonoBehaviour {
 	public void CutsceneCredits(){
 		cutsceneCredits = true;
 		debugStatusSetup();
+	}
+
+	public void FadeToBlack (float time = 1.0f){
+		iTween.CameraFadeTo (iTween.Hash ("amount", 1.0, "time", time, "easeType", "easeOutQuart"));
+	}
+
+	public void FadeToClear (float time = 1.0f){
+		iTween.CameraFadeTo (iTween.Hash ("amount", 0.0, "time", time, "easeType", "easeOutQuart"));
 	}
 	
 	public void debugStatusSetup () { // Rev: This updates the debug 3DText with the state bools set by the event functions.

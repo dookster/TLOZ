@@ -22,9 +22,7 @@ public class PlayerMouseControl : MonoBehaviour {
 	public	float		lookAtSpeed;
 	public	float		lookAtTimer;
 	public	float		lookAtTimeTarget;
-
-	// Rev: Change InteractableRev to Interactable if everything seems stable
-	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
+	
 	private InteractableRev	currentWorldTarget; // If this isn't null the player should move towards it and interact when close enough
 	[SerializeField] 
 	private InteractableRev currentItemToUse; // Item we're currently dragging around from the inventory
@@ -183,12 +181,12 @@ public class PlayerMouseControl : MonoBehaviour {
 	}
 
 	private void TurnToFace (Vector3 target){ // Rev: Checks angle between Maja's forward vector and target. If larger than goal, slerps towards goal.
-		
+
 		Vector3 relativePos = target - characterTransform.position;
 		Vector3 forward = characterTransform.forward;
 		
 		if(Vector3.Angle(target, forward) > lookAtAngle){
-			Quaternion rotation = Quaternion.LookRotation(relativePos);
+			Quaternion rotation = Quaternion.LookRotation(relativePos); // Rev: NavMeshAgent.UpdateRotation has to be turned off before this'll work
 			rotation.x = 0.0f;
 			rotation.z = 0.0f;
 			characterTransform.rotation = Quaternion.Slerp(characterTransform.rotation, rotation, GameFlow.instance.dTimeModified * lookAtSpeed);

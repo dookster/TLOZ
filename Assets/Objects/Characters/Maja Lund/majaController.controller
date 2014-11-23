@@ -14,6 +14,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: speed
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -50,8 +56,8 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Drink
-    m_EventTreshold: .400000006
+    m_ConditionEvent: speed
+    m_EventTreshold: .150000006
     m_ExitTime: .90476191
   m_Atomic: 1
   m_Solo: 0
@@ -70,8 +76,8 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Drink
-    m_EventTreshold: .400000006
+    m_ConditionEvent: speed
+    m_EventTreshold: .150000006
     m_ExitTime: .739130437
   m_Atomic: 1
   m_Solo: 0
@@ -90,7 +96,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: speed
     m_EventTreshold: 0
     m_ExitTime: .877551019
   m_Atomic: 1
@@ -161,7 +167,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 90a95ffeaa61e2a418a012d2637b2b29, type: 3}
+  - {fileID: 7400002, guid: 195c8a171822a3141949d9271ae40b2e, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 240, y: -288, z: 0}
   m_IKOnFeet: 0
@@ -230,12 +236,6 @@ StateMachine:
       first: {fileID: 0}
       second: []
     data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
       first: {fileID: 110257467}
       second:
       - {fileID: 110100000}
@@ -261,13 +261,13 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110216942}
-      second:
-      - {fileID: 110139675}
-    data:
       first: {fileID: 110283768}
       second:
       - {fileID: 110158646}
+    data:
+      first: {fileID: 110216942}
+      second:
+      - {fileID: 110139675}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
