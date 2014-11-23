@@ -37,6 +37,11 @@ public class InteractableRev : MonoBehaviour {
 	public TextMesh sayNPC; 
 	public TextMesh sayNPCShadow;
 
+	public bool		hasStandHere = false;
+	public Vector3	standHere 	= new Vector3(0,0,0);
+	public bool		haslookHere = false;
+	public Vector3	lookHere 	= new Vector3(0,0,0);
+
 	public MatchEvent[] events;
 
 	/**

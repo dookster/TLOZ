@@ -42,6 +42,7 @@ public class GameFlow : MonoBehaviour {
 	public float 	actionLineTime = 0.0f;
 	public bool 	actionLineReset = false;
 
+	// Rev: Bools set by functions used to set up game events - bools are displayed in 3D Text.
 	public bool		cutsceneIntro 		= false;
 	public bool		eavesdropSetup 		= false;
 	public bool		cutsceneEnvelope 	= false;
@@ -85,12 +86,7 @@ public class GameFlow : MonoBehaviour {
 		
 		dTimeModified = Time.deltaTime * deltaTimeModifier;
 
-//		if (actionLine != null) {
-//			actionLine.text = null;
-//			actionLineShadow.text = null;
-//		}
-
-		if (Input.GetKeyDown(KeyCode.RightBracket) && actionLine != null){
+		if (Input.GetKeyDown(KeyCode.RightBracket) && actionLine != null){ // Rev: Increases reading speed, prints status on action line
 			readingSpeed += 0.5f;
 			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
 			actionLine.text = "ReadingSpeed: " + readingSpeed;
@@ -98,7 +94,7 @@ public class GameFlow : MonoBehaviour {
 			actionLineReset = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.LeftBracket) && actionLine != null){
+		if (Input.GetKeyDown(KeyCode.LeftBracket) && actionLine != null){ // Rev: Increases reading speed, prints status on action line.
 			readingSpeed -= 0.5f;
 			readingSpeed = Mathf.Clamp(readingSpeed, 0.5f, 8.0f);
 			actionLine.text = "ReadingSpeed: " + readingSpeed;
@@ -106,7 +102,7 @@ public class GameFlow : MonoBehaviour {
 			actionLineReset = true;
 		}
 
-		if(actionLineTime < GameFlow.instance.readingSpeed){
+		if(actionLineTime < GameFlow.instance.readingSpeed){ // Rev: Timer to reset action line.
 			actionLineTime += Time.deltaTime;
 		}
 		
@@ -157,6 +153,10 @@ public class GameFlow : MonoBehaviour {
 	 */
 	private void HandleEvent(string eventName){
 		Debug.Log("Detected event: " + eventName);
+
+		if(eventName == "BlueCubeYellowCube" || eventName == "YellowCubeBlueCube"){
+			MakingCoffee();
+		}
 	}
 
 	public void playerSay(string text){
@@ -165,6 +165,16 @@ public class GameFlow : MonoBehaviour {
 		//sayCharShadow.text = text;
 		//ResetReadingTime();
 	}
+
+	// Rev: Following is a list of functions for setting up minor repeating events in the game.
+
+	public void MakingCoffee() {
+		Debug.Log ("I am now making coffee!");
+	}
+
+
+
+	// Rev: Following is a list of functions for setting up MAJOR events and cutscenes in the game.
 
 	public void CutsceneIntro(){
 		cutsceneIntro = true;
@@ -221,7 +231,7 @@ public class GameFlow : MonoBehaviour {
 		debugStatusSetup();
 	}
 	
-	public void debugStatusSetup () {
+	public void debugStatusSetup () { // Rev: This updates the debug 3DText with the state bools set by the event functions.
 		debugStatus.text = 	"1 Cutscene Intro: " + cutsceneIntro + "\n" +
 							"2 Eavesdrop Setup: " + eavesdropSetup + "\n" +
 							"3 Cutscene Envelope: " + cutsceneEnvelope + "\n" +

@@ -76,7 +76,7 @@ public class ConversationUI : MonoBehaviour {
 				DialogueNode node = currentNode.getChildren()[n];
 				OptionText line = UILines[n];
 				line.gameObject.SetActive(true);
-				line.setText(node.name);
+				line.setText("* " + node.name);
 				line.transform.localPosition = Vector3.zero;
 				line.transform.Translate(0, 0.6f * n, 0);
 			}

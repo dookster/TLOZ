@@ -6,6 +6,7 @@ public class PlayerMouseControl : MonoBehaviour {
 	public	GameObject		walkTo;
 	
 	public	NavMeshAgent	character01;
+	public	Transform		characterTransform;
 	public  InteractableRev playerInteractable; // interactable 'dummy' item to pass to items when we're not dragging anything, lets them choose to be picked up etc.
 
 	public 	Camera 	cameraA;
@@ -14,6 +15,13 @@ public class PlayerMouseControl : MonoBehaviour {
 	public	float	rayDistance	=	25.00f;
 
 	private bool	haveClickedInv = false;
+
+	public	bool		lookAt = false; // Rev: Variables for turning Maja towards the object or person she's looking at
+	public 	Vector3		lookAtTarget;	// Rev: Possibly turn all this into a coroutine?
+	public	float		lookAtAngle;
+	public	float		lookAtSpeed;
+	public	float		lookAtTimer;
+	public	float		lookAtTimeTarget;
 
 	// Rev: Change InteractableRev to Interactable if everything seems stable
 	[SerializeField] // Rev: Serialized in order for me to follow the behavior in the inspector.
@@ -46,10 +54,7 @@ public class PlayerMouseControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-
 		// KT: Show the inventory when pointer is in top 1/8th of the screen
-
 		if (Input.mousePosition.y < Screen.height - Screen.height / 8){
 			inventoryCam.OpenInventory();
 		}else if (Input.mousePosition.y > Screen.height / 8){
@@ -69,10 +74,11 @@ public class PlayerMouseControl : MonoBehaviour {
 		if(currentWorldTarget != null){
 			if(currentWorldTarget.withinRange(character01.transform.position)){ // Rev: Sphere collider?
 				// Let the target do whatever it does when interacting, picking up is handled by the items themselves
+				lookAtTarget = currentWorldTarget.transform.position; // Rev: Get pre-picked-up position for Maja to turn towards
 				currentWorldTarget.Interact(currentItemToUse);
-
 				// Target reached, remove it from the target variable
 				currentWorldTarget = null;
+				lookAt = true;	// Rev: Triggers the timer looks to make Maja turn towards the object position.
 			}
 		}
 
@@ -103,13 +109,18 @@ public class PlayerMouseControl : MonoBehaviour {
 					currentItemToUse = playerInteractable;
 					if(interactable.justLook){
 						// Don't move, just look at it 
-						// Rev: An issue here - sometimes we want the PC to APPROACH the interactable before saying something. Other times, we want them to walk and talk.
+						// Rev: Other times, we want them to walk and talk.
 						Debug.Log ("I'm looking at " + interactable.name + " and it's " + interactable.lookDescription); // Rev: Should probably reduce this to description, for flexibility
 					} else {
 						// Target and move towards it
 						currentWorldTarget = interactable;
 						walkTo.transform.position	= hit.point;
-						character01.destination 	= hit.point;
+						if(currentWorldTarget.hasStandHere){
+							character01.destination		= currentWorldTarget.standHere;
+						}else{
+							character01.destination 	= hit.point;
+						}
+
 					}
 				}
 
@@ -117,7 +128,13 @@ public class PlayerMouseControl : MonoBehaviour {
 				if(Input.GetButtonUp("Fire1") && currentItemToUse != null){
 					currentWorldTarget = interactable;
 					walkTo.transform.position	= hit.point;
-					character01.destination 	= hit.point;
+
+					if(currentWorldTarget.hasStandHere){
+						character01.destination		= currentWorldTarget.standHere;
+					}else{
+						character01.destination 	= hit.point;
+					}
+
 					inventory.settleItemsWithoutAnimation();
 				}
 			}
@@ -146,6 +163,36 @@ public class PlayerMouseControl : MonoBehaviour {
 			haveClickedInv = false;
 			//currentItemToUse = null;
 		}
+
+		if (Input.GetButtonDown("Fire2")){
+			// character01.updatePosition = !character01.updatePosition;
+			character01.updateRotation = !character01.updateRotation;
+		}
+
+		 if (lookAtTimer < lookAtTimeTarget && lookAt){
+			lookAtTimer += Time.deltaTime;
+			TurnToFace(lookAtTarget);
+			character01.updateRotation = false;
+		} 
+
+		 if (lookAtTimer >= lookAtTimeTarget && lookAt){
+			lookAt = false;
+			lookAtTimer = 0.0f;
+			character01.updateRotation = true;
+		}
+	}
+
+	private void TurnToFace (Vector3 target){ // Rev: Checks angle between Maja's forward vector and target. If larger than goal, slerps towards goal.
+		
+		Vector3 relativePos = target - characterTransform.position;
+		Vector3 forward = characterTransform.forward;
+		
+		if(Vector3.Angle(target, forward) > lookAtAngle){
+			Quaternion rotation = Quaternion.LookRotation(relativePos);
+			rotation.x = 0.0f;
+			rotation.z = 0.0f;
+			characterTransform.rotation = Quaternion.Slerp(characterTransform.rotation, rotation, GameFlow.instance.dTimeModified * lookAtSpeed);
+		}
 	}
 
 	public void CursorHighlight(){
@@ -155,4 +202,6 @@ public class PlayerMouseControl : MonoBehaviour {
 	public void CursorNormal() {
 		Cursor.SetCursor (cursorTextureNormal, hotSpot, cursorMode); // Rev: More initial custom cursor code
 	}
+
+
 }

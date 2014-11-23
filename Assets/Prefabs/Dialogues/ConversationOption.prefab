@@ -133,7 +133,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 64d34f34aa8a4b3458c3c9e672c888aa, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!102 &10200002
 TextMesh:
   serializedVersion: 3
@@ -154,7 +154,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 64d34f34aa8a4b3458c3c9e672c888aa, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278255559
+    rgba: 4294967295
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainText: {fileID: 10200002}
   shadowText: {fileID: 10200000}
+  neutral: {r: .686274529, g: .686274529, b: .686274529, a: 1}
+  highlight: {r: 1, g: 1, b: 1, a: 1}
+  shadow: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
