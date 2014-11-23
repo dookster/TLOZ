@@ -44,6 +44,13 @@ AnimationClip:
   m_EditorCurves: []
   m_EulerEditorCurves: []
   m_Events:
+  - time: 0
+    functionName: PauseInput
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
   - time: .150000006
     functionName: FadeToBlack
     data: 
@@ -74,6 +81,13 @@ AnimationClip:
     messageOptions: 0
   - time: 8.86666679
     functionName: TakeCupOfCoffee
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.94999981
+    functionName: PauseInput
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
