@@ -48,6 +48,8 @@ public class GameFlow : MonoBehaviour {
 	private Inventory inv;
 	public GameObject testInvItem;
 
+	public GameObject spawnEmptyCup; // Rev: Spawn so you can keep giving coffee to Royo
+
 	private GameObject faderCard;
 
 	// Rev: Bools set by functions used to set up game events - bools are displayed in 3D Text.
@@ -188,6 +190,11 @@ public class GameFlow : MonoBehaviour {
 		if(eventName == "Sealed envelopeCoffee pot"){
 			animation.Play ("OpeningTheEnvelope");
 			Debug.Log ("Opening the envelope...");
+		}
+
+		if(eventName == "Hot cup of coffee with saucerCaptain Aiden Royo"){
+			GameObject cup = GameObject.Instantiate(spawnEmptyCup) as GameObject;
+			cup.name = cup.name.Replace ("(Clone)","");
 		}
 
 	}

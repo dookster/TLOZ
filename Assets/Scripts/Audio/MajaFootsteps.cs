@@ -27,6 +27,5 @@ public class MajaFootsteps : MonoBehaviour {
 		lastStep = step;
 		audio.clip = audCli [step];
 		audio.Play ();
-		Debug.Log ("Footstep");
 	}
 }
