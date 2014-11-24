@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MakeCoffee
+  m_Name: OpeningTheEnvelope
   serializedVersion: 4
   m_AnimationType: 1
   m_Compressed: 0
@@ -27,7 +27,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 9.33333302
+    m_StopTime: 4.08333349
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -51,51 +51,65 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: .916666687
+  - time: .0333333351
     functionName: FadeToBlack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.01666665
-    functionName: PlayAudioGeneric
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 6
-    functionName: PlayAudioGeneric
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 8.86666679
+  - time: .0500000007
     functionName: PlayAudioGeneric
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 2
-    messageOptions: 0
-  - time: 8.94999981
-    functionName: PauseInput
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 9.01666641
+  - time: 1.5
+    functionName: PlayAudioGeneric
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 3
+    messageOptions: 0
+  - time: 2.5
+    functionName: playerSay
+    data: She's ordered...
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.41666675
+    functionName: playerSay
+    data: '...PUNCL?'
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.5
+    functionName: PlayAudioGeneric
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 4
+    messageOptions: 0
+  - time: 3.5666666
     functionName: FadeToClear
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 9.33333302
+  - time: 3.58333325
+    functionName: PauseInput
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.08333349
     functionName: playerSay
-    data: Smells like freshly-brewed paradise...!
+    data: What's 'PUNCL'?
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

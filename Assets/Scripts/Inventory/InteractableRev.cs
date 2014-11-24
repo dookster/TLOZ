@@ -171,6 +171,7 @@ public class InteractableRev : MonoBehaviour {
 				// New inventory item
 				if(matchEvent.newItemInInventory != null){
 					GameObject newItem = Instantiate(matchEvent.newItemInInventory) as GameObject;
+					newItem.name = newItem.name.Replace ("(Clone)","");
 					inventory.addItem(newItem);
 				}
 

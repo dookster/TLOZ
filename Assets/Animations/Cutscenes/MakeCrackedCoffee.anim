@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MakeCoffee
+  m_Name: MakeCrackedCoffee
   serializedVersion: 4
   m_AnimationType: 1
   m_Compressed: 0
@@ -95,7 +95,7 @@ AnimationClip:
     messageOptions: 0
   - time: 9.33333302
     functionName: playerSay
-    data: Smells like freshly-brewed paradise...!
+    data: Yikes. I could easily scald myself with this.
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

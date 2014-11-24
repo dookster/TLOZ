@@ -42,6 +42,13 @@ public class GameFlow : MonoBehaviour {
 	public float 	actionLineTime = 0.0f;
 	public bool 	actionLineReset = false;
 
+	public AudioClip[] audClips;
+
+	private Inventory inv;
+	public GameObject testInvItem;
+
+	private GameObject faderCard;
+
 	// Rev: Bools set by functions used to set up game events - bools are displayed in 3D Text.
 	public bool		cutsceneIntro 		= false;
 	public bool		eavesdropSetup 		= false;
@@ -75,6 +82,10 @@ public class GameFlow : MonoBehaviour {
 		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
 
 		debugStatus = GameObject.Find ("DebugStatus").GetComponent<TextMesh> ();
+
+		inv = GameObject.Find ("Inventory").GetComponent<Inventory> ();
+
+		faderCard = GameObject.Find ("FaderCard");
 
 		iTween.CameraFadeAdd ();
 	}
@@ -143,6 +154,11 @@ public class GameFlow : MonoBehaviour {
 		actionLine.text = "";
 		actionLineShadow.text = "";
 	}
+
+	public void PlayAudioGeneric (int clipNum){
+		audio.clip = audClips [clipNum];
+		audio.Play ();
+	}
 	
 	/**
 	 * Super generic method, called whenever anything sends a broadcast with the name 'event'. Added here mainly to show
@@ -156,9 +172,23 @@ public class GameFlow : MonoBehaviour {
 	private void HandleEvent(string eventName){
 		Debug.Log("Detected event: " + eventName);
 
-		if(eventName == "BlueCubeYellowCube" || eventName == "YellowCubeBlueCube"){
+		if(eventName == "PlayerEmpty coffee cup and saucer" || eventName == "Empty coffee cup and saucerPlayer" || eventName == "PlayerCracked coffee cup" || eventName == "Cracked coffee cupPlayer"){
+			PickUpEmptyCup();
+		}
+
+		if(eventName == "Coffee makerEmpty coffee cup and saucer" || eventName == "Empty coffee cup and saucerCoffee maker" || eventName == "Coffee makerHot cup of coffee with saucer" || eventName == "Hot cup of coffee with saucerCoffee maker"){
 			MakingCoffee();
 		}
+
+		if(eventName == "Coffee makerCracked coffee cup" || eventName == "Cracked coffee cupCoffee maker"){
+			animation.Play ("MakeCrackedCoffee");
+		}
+
+		if(eventName == "Sealed envelopeCoffee pot"){
+			animation.Play ("OpeningTheEnvelope");
+			Debug.Log ("Opening the envelope...");
+		}
+
 	}
 
 	public void playerSay(string text){
@@ -183,6 +213,10 @@ public class GameFlow : MonoBehaviour {
 		animation.Play("MakeCoffee");
 	}
 
+	public void PickUpEmptyCup(){
+		audio.clip = audClips [2];
+		audio.Play ();
+	}
 
 
 	// Rev: Following is a list of functions for setting up MAJOR events and cutscenes in the game.
@@ -203,6 +237,9 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	public void SealedSetup(){
+		GameObject newitem = GameObject.Instantiate (testInvItem) as GameObject;
+		newitem.name = newitem.name.Replace ("(Clone)", "");
+		inv.addItem (newitem);
 		sealedSetup = true;
 		debugStatusSetup();
 	}
@@ -243,11 +280,11 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	public void FadeToBlack (float time = 1.0f){
-		iTween.CameraFadeTo (iTween.Hash ("amount", 1.0, "time", time, "easeType", "easeOutQuart"));
+		iTween.FadeTo (faderCard, iTween.Hash ("amount", 1.0, "time", time, "easeType", "easeOutQuart"));
 	}
 
 	public void FadeToClear (float time = 1.0f){
-		iTween.CameraFadeTo (iTween.Hash ("amount", 0.0, "time", time, "easeType", "easeOutQuart"));
+		iTween.FadeTo (faderCard, iTween.Hash ("amount", 0.0, "time", time, "easeType", "easeOutQuart"));
 	}
 	
 	public void debugStatusSetup () { // Rev: This updates the debug 3DText with the state bools set by the event functions.

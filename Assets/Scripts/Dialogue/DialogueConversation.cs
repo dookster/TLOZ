@@ -56,7 +56,8 @@ public class DialogueConversation : DialogueNode{
 				// Current node is a keyword, don't say anything
 				return true;
 			}
-			GameFlow.instance.playerSay(currentNode.name);
+			string tempString = currentNode.name.Replace("NUULINE","\n");
+			GameFlow.instance.playerSay(tempString);
 
 			while(GameFlow.instance.playerInteractable.isTalking())
 				yield return null;
