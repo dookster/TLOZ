@@ -192,14 +192,9 @@ public class GameFlow : MonoBehaviour {
 			Debug.Log ("Opening the envelope...");
 		}
 
-
 		if(eventName == "Hot cup of coffee with saucerCaptain Aiden Royo"){
 			GameObject cup = GameObject.Instantiate(spawnEmptyCup) as GameObject;
 			cup.name = cup.name.Replace ("(Clone)","");
-		}
-
-		if(eventName == "Captain Aiden RoyoCracked cup, full of hot coffee" || eventName == "Cracked cup, full of hot coffeeCaptain Aiden Royo"){
-
 		}
 
 	}
