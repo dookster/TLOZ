@@ -190,6 +190,10 @@ public class GameFlow : MonoBehaviour {
 			Debug.Log ("Opening the envelope...");
 		}
 
+		if(eventName == "Captain Aiden RoyoCracked cup, full of hot coffee" || eventName == "Cracked cup, full of hot coffeeCaptain Aiden Royo"){
+
+		}
+
 	}
 
 	public void playerSay(string text){
