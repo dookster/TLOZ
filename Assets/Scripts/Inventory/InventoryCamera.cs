@@ -13,19 +13,6 @@ public class InventoryCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-//		if(Input.GetKeyDown (KeyCode.UpArrow)){
-//
-//			// transform.position = new Vector3 (transform.position.x, posClosed, transform.position.z);
-//
-//
-//		}
-//
-//		if(Input.GetKeyDown(KeyCode.DownArrow)){
-//
-//			// transform.position = new Vector3 (transform.position.x, posOpen, transform.position.z);
-//
-//		}
 
 	}
 

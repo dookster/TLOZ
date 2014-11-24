@@ -55,7 +55,7 @@ public class PlayerMouseControl : MonoBehaviour {
 		// KT: Show the inventory when pointer is in top 1/8th of the screen
 		if (Input.mousePosition.y < Screen.height - Screen.height / 8){
 			inventoryCam.OpenInventory();
-		}else if (Input.mousePosition.y > Screen.height / 8){
+		}else if (Input.mousePosition.y > Screen.height / 8 && !GameFlow.instance.inputPaused){
 			inventoryCam.CloseInventory();
 		}
 
@@ -80,6 +80,17 @@ public class PlayerMouseControl : MonoBehaviour {
 			}
 		}
 
+		if (lookAtTimer < lookAtTimeTarget && lookAt){
+			lookAtTimer += Time.deltaTime;
+			TurnToFace(lookAtTarget);
+			character01.updateRotation = false;
+		} 
+		
+		if (lookAtTimer >= lookAtTimeTarget && lookAt){
+			lookAt = false;
+			lookAtTimer = 0.0f;
+			character01.updateRotation = true;
+		}
 
 		// !!! Skipping almost all updates with this, could be handled better
 		// Ignore input here while we're talking
@@ -167,17 +178,7 @@ public class PlayerMouseControl : MonoBehaviour {
 			character01.updateRotation = !character01.updateRotation;
 		}
 
-		 if (lookAtTimer < lookAtTimeTarget && lookAt){
-			lookAtTimer += Time.deltaTime;
-			TurnToFace(lookAtTarget);
-			character01.updateRotation = false;
-		} 
 
-		 if (lookAtTimer >= lookAtTimeTarget && lookAt){
-			lookAt = false;
-			lookAtTimer = 0.0f;
-			character01.updateRotation = true;
-		}
 	}
 
 	private void TurnToFace (Vector3 target){ // Rev: Checks angle between Maja's forward vector and target. If larger than goal, slerps towards goal.

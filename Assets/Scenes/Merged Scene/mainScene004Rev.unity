@@ -213,6 +213,7 @@ Transform:
   - {fileID: 979318895}
   - {fileID: 1400167139}
   - {fileID: 772463147}
+  - {fileID: 372254681}
   m_Father: {fileID: 1435987650}
   m_RootOrder: 2
 --- !u!1 &33073635
@@ -369,8 +370,8 @@ MonoBehaviour:
   invTargetYPos: 0
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
-  hasStandHere: 0
-  standHere: {x: 0, y: 0, z: 0}
+  hasStandHere: 1
+  standHere: {x: -.99000001, y: 0, z: 2.20000005}
   haslookHere: 0
   lookHere: {x: 0, y: 0, z: 0}
   events:
@@ -379,7 +380,7 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1 &64890500
 GameObject:
@@ -1619,7 +1620,8 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 100000, guid: 65622d633276f564ea0ba596f3e4ae6c, type: 2}
+    newItemInInventory:
+    - {fileID: 100000, guid: 65622d633276f564ea0ba596f3e4ae6c, type: 2}
     conversation: {fileID: 697562111}
 --- !u!65 &180997797
 BoxCollider:
@@ -3601,8 +3603,8 @@ Transform:
   - {fileID: 1215986077}
   - {fileID: 1303794554}
   - {fileID: 390681961}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 24758528}
+  m_RootOrder: 3
 --- !u!1 &383318021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,14 +3797,16 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: Sealed envelope
     comment: I... I have to know...!
     pickUp: 0
     destroyThis: 0
     destroyOther: 1
-    newItemInInventory: {fileID: 100000, guid: e1241bbcc43dc7f47a90dea66a86ecb6, type: 2}
+    newItemInInventory:
+    - {fileID: 100000, guid: a7949c681e8b02444869f4cb98bb4246, type: 2}
+    - {fileID: 100000, guid: e1241bbcc43dc7f47a90dea66a86ecb6, type: 2}
     conversation: {fileID: 0}
 --- !u!65 &386959925
 BoxCollider:
@@ -4226,6 +4230,7 @@ Transform:
   - {fileID: 1227236272}
   - {fileID: 1465418963}
   - {fileID: 1222975429}
+  - {fileID: 2110335412}
   m_Father: {fileID: 1123883861}
   m_RootOrder: 0
 --- !u!1 &434343504
@@ -6309,28 +6314,30 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: Empty coffee cup and saucer
     comment: One cup of coffee, coming right up...
     pickUp: 0
     destroyThis: 0
     destroyOther: 1
-    newItemInInventory: {fileID: 100002, guid: a3c9f00d5295e55408301527f46a0c14, type: 2}
+    newItemInInventory:
+    - {fileID: 100002, guid: a3c9f00d5295e55408301527f46a0c14, type: 2}
     conversation: {fileID: 0}
   - itemName: Cracked coffee cup
     comment: Hmm. This could be dangerous.
     pickUp: 0
     destroyThis: 0
     destroyOther: 1
-    newItemInInventory: {fileID: 100000, guid: 2aa0cd754ff71a14daac46b494e539d9, type: 2}
+    newItemInInventory:
+    - {fileID: 100000, guid: 2aa0cd754ff71a14daac46b494e539d9, type: 2}
     conversation: {fileID: 0}
   - itemName: Hot cup of coffee with saucer
     comment: A fresh coffee, toot suite...!
     pickUp: 0
     destroyThis: 0
     destroyOther: 1
-    newItemInInventory: {fileID: 100002, guid: a3c9f00d5295e55408301527f46a0c14, type: 2}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!95 &658400399
 Animator:
@@ -6640,7 +6647,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 24758528}
     m_Modifications:
     - target: {fileID: 400000, guid: 1dfd6aa627d292945953e025891ee8aa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -6672,7 +6679,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dfd6aa627d292945953e025891ee8aa, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dfd6aa627d292945953e025891ee8aa, type: 2}
@@ -6868,7 +6875,7 @@ Transform:
   m_Children:
   - {fileID: 478083291}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &723041954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7528,7 +7535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!82 &798534033
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8087,7 +8094,7 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!95 &843497708
 Animator:
@@ -8576,6 +8583,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1976689172}
     m_Modifications:
+    - target: {fileID: 11400002, guid: a76f4919cf4032d4fb7b19a1505ae23c, type: 2}
+      propertyPath: events.Array.data[0].newItemInInventory.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a76f4919cf4032d4fb7b19a1505ae23c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 6.84747696
@@ -8662,6 +8673,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: a76f4919cf4032d4fb7b19a1505ae23c, type: 2}
       propertyPath: events.Array.data[0].newItemInInventory
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: a76f4919cf4032d4fb7b19a1505ae23c, type: 2}
+      propertyPath: events.Array.data[0].newItemInInventory.Array.data[0]
       value: 
       objectReference: {fileID: 100000, guid: 65622d633276f564ea0ba596f3e4ae6c, type: 2}
     m_RemovedComponents: []
@@ -10679,7 +10694,7 @@ Transform:
   - {fileID: 1435987650}
   - {fileID: 264953982}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
 --- !u!1 &1154383991
 GameObject:
   m_ObjectHideFlags: 0
@@ -11096,21 +11111,21 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: BlueCube
     comment: Wow! They merged into a green cube!
     pickUp: 0
     destroyThis: 1
     destroyOther: 1
-    newItemInInventory: {fileID: 100000, guid: fb7ed893528704d46ab72357c8879bdb, type: 2}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: RedCube
     comment: 'Nah. I don''t want to try that. '
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!23 &1222975426
 Renderer:
@@ -11283,14 +11298,14 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: BlueCube
     comment: Hmm, blue and brown doesn't seeme right.
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!23 &1227236269
 Renderer:
@@ -11753,7 +11768,7 @@ Transform:
   m_Children:
   - {fileID: 2008450599}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
 --- !u!1 &1284591439
 GameObject:
   m_ObjectHideFlags: 0
@@ -11890,7 +11905,7 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!23 &1290579253
 Renderer:
@@ -12089,7 +12104,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
 --- !u!1001 &1313528253
 Prefab:
   m_ObjectHideFlags: 0
@@ -12351,7 +12366,7 @@ Transform:
   m_Children:
   - {fileID: 2106247570}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!1 &1336210686
 GameObject:
   m_ObjectHideFlags: 0
@@ -12755,21 +12770,21 @@ MonoBehaviour:
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 1960802878}
   - itemName: 
     comment: 
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: 
     comment: 
     pickUp: 0
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1 &1364667583
 GameObject:
@@ -14046,7 +14061,7 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!23 &1465418960
 Renderer:
@@ -14701,11 +14716,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1537116492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.17000008, y: .270000011, z: 2.03999996}
+  m_LocalPosition: {x: -.99000001, y: .270000011, z: 2.20000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
 --- !u!1 &1539447098
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,6 +14991,76 @@ Prefab:
   m_RootGameObject: {fileID: 979318894}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1590738535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1590738539}
+  - 33: {fileID: 1590738538}
+  - 136: {fileID: 1590738537}
+  - 23: {fileID: 1590738536}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1590738536
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590738535}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 3e6e978b71295ba478f55848177c4063, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!136 &1590738537
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590738535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1590738538
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590738535}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1590738539
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590738535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.5929842, y: .991363049, z: .895793438}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &1594374243
 GameObject:
   m_ObjectHideFlags: 0
@@ -15149,7 +15234,7 @@ Transform:
   - {fileID: 1949823507}
   - {fileID: 1974953760}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
 --- !u!1 &1640571662
 GameObject:
   m_ObjectHideFlags: 0
@@ -15351,7 +15436,7 @@ Transform:
   - {fileID: 2068457090}
   - {fileID: 1431711149}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
 --- !u!1 &1662441732
 GameObject:
   m_ObjectHideFlags: 0
@@ -17387,7 +17472,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 432135042}
     m_Modifications:
     - target: {fileID: 400000, guid: 7da5231c0731afa43b311856f0af454e, type: 2}
       propertyPath: m_LocalPosition.x
@@ -17419,7 +17504,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7da5231c0731afa43b311856f0af454e, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7da5231c0731afa43b311856f0af454e, type: 2}
       propertyPath: m_Name
@@ -18789,7 +18874,7 @@ Transform:
   - {fileID: 1713042140}
   - {fileID: 225830937}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!1 &2043486916
 GameObject:
   m_ObjectHideFlags: 0
@@ -19250,7 +19335,7 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!95 &2083251253
 Animator:
@@ -19723,8 +19808,8 @@ Transform:
   m_LocalPosition: {x: -5.10675383, y: .8940804, z: 1.87798023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 432135042}
+  m_RootOrder: 8
 --- !u!1 &2121998141
 GameObject:
   m_ObjectHideFlags: 0

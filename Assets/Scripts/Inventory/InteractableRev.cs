@@ -54,7 +54,7 @@ public class InteractableRev : MonoBehaviour {
 		public bool pickUp;							// pick up this item
 		public bool destroyThis;					// destroy (remove) this item after this interaction
 		public bool destroyOther;					// destroy (remove) the item used on this
-		public GameObject newItemInInventory; 		// new item (prefab) to create in inventory, set to null if no item comes of it
+		public GameObject[] newItemInInventory; 	// new item (prefab) to create in inventory, set to null if no item comes of it
 		public DialogueConversation conversation;	// Conversation prefab to start
 	}
 
@@ -170,9 +170,11 @@ public class InteractableRev : MonoBehaviour {
 
 				// New inventory item
 				if(matchEvent.newItemInInventory != null){
-					GameObject newItem = Instantiate(matchEvent.newItemInInventory) as GameObject;
-					newItem.name = newItem.name.Replace ("(Clone)","");
-					inventory.addItem(newItem);
+					for(int i = 0; i < matchEvent.newItemInInventory.Length; i ++){
+						GameObject newItem = Instantiate(matchEvent.newItemInInventory[i]) as GameObject;
+						newItem.name = newItem.name.Replace ("(Clone)",""); // Rev: Removes the automatically added suffix '(Clone)'.
+						inventory.addItem(newItem);
+					}
 				}
 
 				if(matchEvent.conversation != null){
