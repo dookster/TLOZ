@@ -73,10 +73,14 @@ public class InteractableRev : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(readingTime < GameFlow.instance.readingSpeed){
-			readingTime += Time.deltaTime;
+
+		if(!GameFlow.instance.conversationClickThrough){
+			// Advance text automatically
+			if(readingTime < GameFlow.instance.readingSpeed){
+				readingTime += Time.deltaTime;
+			}
 		}
-		
+
 		if(readingTime >= GameFlow.instance.readingSpeed){
 			hideText();
 		}
@@ -89,6 +93,13 @@ public class InteractableRev : MonoBehaviour {
 			hideActionLine();
 			actionLineReset = false;
 		}
+
+
+		// If the player clicks, max out the reading time so we skip to the next text
+		if(Input.GetButtonUp("Fire1")){
+			readingTime = float.MaxValue;
+		}
+
 	}
 
 	void OnMouseDown() {

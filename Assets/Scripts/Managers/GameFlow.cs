@@ -26,6 +26,7 @@ public class GameFlow : MonoBehaviour {
 
 
 	public float readingSpeed = 2.0f;
+	public bool conversationClickThrough; // If true, wait for the player to click before advancing conversations
 
 	public InteractableRev playerInteractable;
 
