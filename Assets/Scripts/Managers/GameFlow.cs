@@ -29,6 +29,7 @@ public class GameFlow : MonoBehaviour {
 	public bool conversationClickThrough; // If true, wait for the player to click before advancing conversations
 
 	public InteractableRev playerInteractable;
+	public InteractableRev royoInteractable;
 
 	public ConversationUI conversationUI;
 
@@ -79,6 +80,8 @@ public class GameFlow : MonoBehaviour {
 		//sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
 		//sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
 		playerInteractable = GameObject.Find ("Player").GetComponent<InteractableRev>();
+		royoInteractable = GameObject.Find ("Captain Aiden Royo").GetComponent<InteractableRev>();
+
 		conversationUI = GameObject.Find("Conversation").GetComponent<ConversationUI>();
 
 		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
@@ -197,6 +200,12 @@ public class GameFlow : MonoBehaviour {
 			cup.name = cup.name.Replace ("(Clone)","");
 		}
 
+		if(eventName == "RoyoCoffeeSpill"){
+			// KT: After coffee spill conversation
+			Debug.Log ("Spilling coffee...");
+			animation.Play ("SpillCoffeeOnRoyo");
+		}
+
 	}
 
 	public void playerSay(string text){
@@ -206,6 +215,11 @@ public class GameFlow : MonoBehaviour {
 		//ResetReadingTime();
 	}
 
+	// KT: This is a rather hacky way of doing this, is it a good idea?
+	public void royoSay(string text){
+		royoInteractable.say(text);
+	}
+
 	// Rev: Function that can be triggered by animation clip
 	public void PauseInput(int isTrue){
 		if (isTrue == 0){
@@ -213,6 +227,11 @@ public class GameFlow : MonoBehaviour {
 		} else if (isTrue == 1){
 			inputPaused = true;
 		}
+	}
+
+	public void RoyoTurns(){
+		Debug.Log ("Royo turns around after spilling coffee on himself");
+		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
 	}
 
 	// Rev: Following is a list of functions for setting up minor repeating events in the game.
@@ -225,6 +244,7 @@ public class GameFlow : MonoBehaviour {
 		audio.clip = audClips [2];
 		audio.Play ();
 	}
+
 
 
 	// Rev: Following is a list of functions for setting up MAJOR events and cutscenes in the game.

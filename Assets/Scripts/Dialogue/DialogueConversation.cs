@@ -106,6 +106,12 @@ public class DialogueConversation : DialogueNode{
 			GameFlow.instance.inputPaused = false;
 			return true;
 		}
+		if(key.Equals("EVENT")){
+			// Broadcast event with this conversation name and end
+			Messenger<string>.Broadcast("event", (name));
+			GameFlow.instance.inputPaused = false;
+			return true;
+		}
 		return false;
 	}
 
