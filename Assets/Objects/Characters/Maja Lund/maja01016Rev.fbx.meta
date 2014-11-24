@@ -386,6 +386,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: PlayStep
+        data: 
+        objectReferenceParameter: {fileID: 100050, guid: 7b3d687d0665e304b82e0a3813f75e80,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
