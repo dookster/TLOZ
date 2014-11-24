@@ -5332,7 +5332,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .120999999
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7695,6 +7695,7 @@ MonoBehaviour:
   dTimeModified: 0
   pause: 0
   readingSpeed: 2
+  conversationClickThrough: 0
   playerInteractable: {fileID: 0}
   conversationUI: {fileID: 1431711150}
   inputPaused: 0
@@ -15138,7 +15139,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1447258395}
-  - 95: {fileID: 1447258396}
   m_Layer: 0
   m_Name: MortaredOffice2
   m_TagString: Untagged
@@ -15161,22 +15161,6 @@ Transform:
   - {fileID: 1295253723}
   m_Father: {fileID: 0}
   m_RootOrder: 13
---- !u!95 &1447258396
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 7351f480e76488a41a3b1cc95fa3f41f,
-    type: 3}
-  m_PrefabInternal: {fileID: 1070057764}
-  m_GameObject: {fileID: 1447258394}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 7351f480e76488a41a3b1cc95fa3f41f, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1453469581
 Prefab:
   m_ObjectHideFlags: 0
