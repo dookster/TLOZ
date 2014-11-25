@@ -208,6 +208,9 @@ public class GameFlow : MonoBehaviour {
 
 		if(eventName == "Slip of paperOne of the president's pens..." || eventName == "One of the president's pens...Slip of paper"){
 			Debug.Log ("Try the forgery puzzle!");
+			actionLine.text = "The end for now - more code, art and puzzles to come." + readingSpeed;
+			actionLineTime = 0.0f;
+			actionLineReset = true;
 		}
 
 	}
