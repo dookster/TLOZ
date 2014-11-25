@@ -114,8 +114,8 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	void OnMouseDrag() {
-		collider.enabled = false;
 		if(tag == "Inventory" && allowDrag){
+			collider.enabled = false;
 			Vector3 worldPoint = uiCamera.ScreenToWorldPoint(Input.mousePosition);
 			transform.position = new Vector3(worldPoint.x, worldPoint.y, 1);
 		}
