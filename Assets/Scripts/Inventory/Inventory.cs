@@ -55,7 +55,7 @@ public class Inventory : MonoBehaviour {
 	public void settleItems(){
 		for(int n = 0 ; n < items.Count ; n++){
 			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos; // Rev: Get customised y position
-			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true));
+			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true, "oncomplete", "settled", "oncompletetarget", gameObject, "oncompleteparams", items[n]));
 		}
 	}
 
@@ -63,7 +63,16 @@ public class Inventory : MonoBehaviour {
 		for(int n = 0 ; n < items.Count ; n++){
 			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
 			items[n].transform.localPosition = new Vector3(0 + itemDistance * n, yPos, -1.0f);
+			settled(items[n]);
 		}
+	}
+	/**
+	 * We need to wait until items are settled before re-enabling their colliders or we can't
+	 * detect two inventory items dragged onto each other (the top item's collider is enabled 
+	 * the instant we lift the mouse button so we risk trying to combine it with itself)
+	 */
+	public void settled(GameObject thing){
+		thing.collider.enabled = true;
 	}
 
 }

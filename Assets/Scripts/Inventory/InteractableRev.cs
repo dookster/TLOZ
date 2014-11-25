@@ -124,7 +124,7 @@ public class InteractableRev : MonoBehaviour {
 	void OnMouseUp() {
 		allowDrag = false;
 		inventory.settleItems();
-		collider.enabled = true;
+		//collider.enabled = true;
 	}
 
 	void OnMouseOver () {

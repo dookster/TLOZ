@@ -206,6 +206,10 @@ public class GameFlow : MonoBehaviour {
 			animation.Play ("SpillCoffeeOnRoyo");
 		}
 
+		if(eventName == "Slip of paperOne of the president's pens..." || eventName == "One of the president's pens...Slip of paper"){
+			Debug.Log ("Try the forgery puzzle!");
+		}
+
 	}
 
 	public void playerSay(string text){

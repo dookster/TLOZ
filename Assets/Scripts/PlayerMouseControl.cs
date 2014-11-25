@@ -150,13 +150,20 @@ public class PlayerMouseControl : MonoBehaviour {
 
 			// Clicking UI stuff
 			else if (Physics.Raycast (uiRay, out hit)){
-				if(Input.GetButton ("Fire1") && hit.transform.tag == "Inventory" && !haveClickedInv){
-					// Clicking something in the inventory?
-					// KT: moving the item during click&drag is handled in the Interactable class, 
-					//     here we handle interaction when dropping an item onto another
-
-					currentItemToUse = hit.transform.gameObject.GetComponent<InteractableRev>();
-					haveClickedInv = true;
+				if(hit.transform.tag == "Inventory"){
+					InteractableRev interactable = hit.transform.GetComponent("InteractableRev") as InteractableRev;
+					if(Input.GetButtonUp("Fire1") && currentItemToUse != interactable){
+						// Dragging inventory stuff on inventory stuff
+						Debug.Log("Mixing stuff in inventory");
+						interactable.Interact(currentItemToUse);
+					}
+					else if(Input.GetButtonDown ("Fire1") && !haveClickedInv){
+						// Clicking something in the inventory?
+						// KT: moving the item during click&drag is handled in the Interactable class, 
+						//     here we handle interaction when dropping an item onto another
+						currentItemToUse = interactable;
+						haveClickedInv = true;
+					}
 				}
 			} else if (Input.GetButtonDown ("Fire1")){
 				// Clicked on 'nothing', clear target and walks towards it
