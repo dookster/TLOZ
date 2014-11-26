@@ -69,6 +69,15 @@ public class InteractableRev : MonoBehaviour {
 		inventory = GameObject.Find ("Inventory").GetComponent<Inventory>();
 
 		ResetActionLineTime ();
+
+		// Instantiate conversation in case any of them are prefabs
+		foreach(MatchEvent ev in events){
+			if(ev.conversation != null){
+				DialogueConversation convo = Instantiate(ev.conversation) as DialogueConversation;
+				convo.name = convo.name.Replace ("(Clone)","");
+				ev.conversation = convo;
+			}
+		}
 	}
 	
 	// Update is called once per frame

@@ -165,6 +165,13 @@ public class GameFlow : MonoBehaviour {
 		audio.clip = audClips [clipNum];
 		audio.Play ();
 	}
+
+	/**
+	 * Play the given animation, and do whatever we need to whenever we play an animation
+	 */
+	public void playAnimation(string animationName){
+		animation.Play(animationName);
+	}
 	
 	/**
 	 * Super generic method, called whenever anything sends a broadcast with the name 'event'. Added here mainly to show
@@ -187,11 +194,11 @@ public class GameFlow : MonoBehaviour {
 		}
 
 		if(eventName == "Coffee makerCracked coffee cup" || eventName == "Cracked coffee cupCoffee maker"){
-			animation.Play ("MakeCrackedCoffee");
+			playAnimation("MakeCrackedCoffee");
 		}
 
 		if(eventName == "Sealed envelopeCoffee pot"){
-			animation.Play ("OpeningTheEnvelope");
+			playAnimation("OpeningTheEnvelope");
 			Debug.Log ("Opening the envelope...");
 		}
 
@@ -203,14 +210,7 @@ public class GameFlow : MonoBehaviour {
 		if(eventName == "RoyoCoffeeSpill"){
 			// KT: After coffee spill conversation
 			Debug.Log ("Spilling coffee...");
-			animation.Play ("SpillCoffeeOnRoyo");
-		}
-
-		if(eventName == "Slip of paperOne of the president's pens..." || eventName == "One of the president's pens...Slip of paper"){
-			Debug.Log ("Try the forgery puzzle!");
-			actionLine.text = "The end for now - more code, art and puzzles to come." + readingSpeed;
-			actionLineTime = 0.0f;
-			actionLineReset = true;
+			playAnimation("SpillCoffeeOnRoyo");
 		}
 
 	}
@@ -228,10 +228,14 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	// Rev: Function that can be triggered by animation clip
+	private bool _clickThrough; // KT: super quick way of going to auto text and back in cutscenes
 	public void PauseInput(int isTrue){
 		if (isTrue == 0){
+			conversationClickThrough = _clickThrough;
 			inputPaused = false;
 		} else if (isTrue == 1){
+			_clickThrough = conversationClickThrough;
+			conversationClickThrough = false;
 			inputPaused = true;
 		}
 	}
@@ -244,7 +248,7 @@ public class GameFlow : MonoBehaviour {
 	// Rev: Following is a list of functions for setting up minor repeating events in the game.
 
 	public void MakingCoffee() {
-		animation.Play("MakeCoffee");
+		playAnimation("MakeCoffee");
 	}
 
 	public void PickUpEmptyCup(){

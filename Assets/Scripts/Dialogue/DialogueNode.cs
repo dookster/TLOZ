@@ -17,7 +17,8 @@ using System.Collections.Generic;
  */
 [ExecuteInEditMode]
 public class DialogueNode : MonoBehaviour {
-	
+
+	public string playerLine;
 	public string response;
 
 	private GUIStyle style;
