@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour {
 		item.layer = LayerMask.NameToLayer("UI");
 		item.tag = "Inventory";
 		items.Add(item);
-		//settleItems();
+		settleItems();
 	}
 
 	public void removeItem(GameObject item){

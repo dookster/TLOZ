@@ -26,8 +26,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -.693556368, y: .137766764, z: .137766734, w: .693556249}
-  m_LocalPosition: {x: 7.26691103, y: .722572565, z: 2.37165189}
+  m_LocalRotation: {x: -.69355619, y: -.137766778, z: .137766793, w: -.693556368}
+  m_LocalPosition: {x: 7.27728128, y: .788720489, z: 2.25916958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,18 +101,23 @@ MonoBehaviour:
   lookDescription: 
   interactDistance: 1
   readingTime: 100
+  actionLineTime: 0
   invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
   invTargetScale: {x: 4.59184217, y: 4.59184217, z: 4.59184217}
   invTargetYPos: -.150000006
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
+  hasStandHere: 0
+  standHere: {x: 0, y: 0, z: 0}
+  haslookHere: 0
+  lookHere: {x: 0, y: 0, z: 0}
   events:
   - itemName: Player
     comment: A cup!
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

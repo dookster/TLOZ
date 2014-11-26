@@ -69,6 +69,15 @@ public class InteractableRev : MonoBehaviour {
 		inventory = GameObject.Find ("Inventory").GetComponent<Inventory>();
 
 		ResetActionLineTime ();
+
+		// Instantiate conversation in case any of them are prefabs
+		foreach(MatchEvent ev in events){
+			if(ev.conversation != null){
+				DialogueConversation convo = Instantiate(ev.conversation) as DialogueConversation;
+				convo.name = convo.name.Replace ("(Clone)","");
+				ev.conversation = convo;
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -114,8 +123,8 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	void OnMouseDrag() {
-		collider.enabled = false;
 		if(tag == "Inventory" && allowDrag){
+			collider.enabled = false;
 			Vector3 worldPoint = uiCamera.ScreenToWorldPoint(Input.mousePosition);
 			transform.position = new Vector3(worldPoint.x, worldPoint.y, 1);
 		}

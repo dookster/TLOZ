@@ -51,12 +51,14 @@ public class DialogueConversation : DialogueNode{
 	}
 
 	private IEnumerator sayPlayerLine() {
-		if(currentNode.name != null && currentNode.name.Length > 0){
-			if(keyWordMatch(currentNode.name)){
+		//Debug.Log ("name: " + currentNode.name + " line: " + currentNode.playerLine);
+		if(currentNode.playerLine != null && currentNode.playerLine.Length > 0){
+		//if(currentNode.name != null && currentNode.name.Length > 0){
+			if(keyWordMatch(currentNode.playerLine)){
 				// Current node is a keyword, don't say anything
 				return true;
 			}
-			string tempString = currentNode.name.Replace("NUULINE","\n");
+			string tempString = currentNode.playerLine.Replace("NUULINE","\n");
 			GameFlow.instance.playerSay(tempString);
 
 			while(GameFlow.instance.playerInteractable.isTalking())
@@ -101,6 +103,7 @@ public class DialogueConversation : DialogueNode{
 	 * Return true if it was a match so the current conversation doesn't try to continue.
 	 */
 	private bool keyWordMatch(string key){
+		//Debug.Log ("keyword: " + key);
 		if(key.Equals("END")){
 			Debug.Log("Conversation END");
 			GameFlow.instance.inputPaused = false;
@@ -111,6 +114,14 @@ public class DialogueConversation : DialogueNode{
 			Messenger<string>.Broadcast("event", (name));
 			GameFlow.instance.inputPaused = false;
 			return true;
+		}
+		if(key.Contains("GO UP")){
+			// Go back X levels in the conversation, would be cool if we could skip to a specific one, this may do
+			int levels = int.Parse(key.Substring(5));
+			for(int n = 0 ; n < levels ; n++){
+				currentNode = currentNode.parentNode;
+			}
+			talk();
 		}
 		return false;
 	}
