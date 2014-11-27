@@ -105,8 +105,11 @@ public class InteractableRev : MonoBehaviour {
 
 
 		// If the player clicks, max out the reading time so we skip to the next text
-		if(Input.GetButtonUp("Fire1")){
-			readingTime = float.MaxValue;
+		if(Input.GetButtonDown("Fire1")){
+			if(GameFlow.instance.conversationClickThrough)
+				readingTime = float.MaxValue;
+			else if (!GameFlow.instance.inputPaused)
+				readingTime = float.MaxValue;
 		}
 
 	}
