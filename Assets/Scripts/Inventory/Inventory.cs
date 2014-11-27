@@ -6,15 +6,17 @@ public class Inventory : MonoBehaviour {
 
 	public Transform anchor;
 	public float itemDistance = 0.5f;
+	public List<GameObject> startingItems = new List<GameObject>();
 	public List<GameObject> items = new List<GameObject>();
-
-
 
 	// Use this for initialization
 	void Start () {
-
-
-
+		foreach(GameObject item in startingItems){
+			GameObject newItem = Instantiate(item) as GameObject;
+			newItem.name = newItem.name.Replace ("(Clone)", "");
+			addItem(newItem);
+		}
+		settleItemsWithoutAnimation();
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,12 @@ public class Inventory : MonoBehaviour {
 	 * After adding, moving or removing an item, set all items into their place
 	 */
 	public void settleItems(){
+		// KT: First remove any inactive items
+		for(int n = items.Count-1 ; n > 0 ; n--){
+			if(!items[n].activeSelf){
+				items.RemoveAt(n);
+			}
+		}
 		for(int n = 0 ; n < items.Count ; n++){
 			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos; // Rev: Get customised y position
 			iTween.MoveTo(items[n], iTween.Hash("x", 0 + itemDistance * n, "y", yPos, "z", -1.0f, "time", 0.5f, "islocal", true, "oncomplete", "settled", "oncompletetarget", gameObject, "oncompleteparams", items[n]));
@@ -60,6 +68,12 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void settleItemsWithoutAnimation(){
+		// KT: First remove any inactive items
+		for(int n = items.Count-1 ; n > 0 ; n--){
+			if(!items[n].activeSelf){
+				items.RemoveAt(n);
+			}
+		}
 		for(int n = 0 ; n < items.Count ; n++){
 			float yPos = items[n].GetComponent<InteractableRev>().invTargetYPos;
 			items[n].transform.localPosition = new Vector3(0 + itemDistance * n, yPos, -1.0f);

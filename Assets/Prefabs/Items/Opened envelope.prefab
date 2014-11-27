@@ -111,7 +111,22 @@ MonoBehaviour:
   standHere: {x: 0, y: 0, z: 0}
   haslookHere: 0
   lookHere: {x: 0, y: 0, z: 0}
-  events: []
+  events:
+  - itemName: Forged presidential orders
+    comment: 
+    pickUp: 0
+    destroyThis: 1
+    destroyOther: 1
+    newItemInInventory:
+    - {fileID: 100000, guid: 8f397e6477085384ab4a0c596cd0b3a3, type: 2}
+    conversation: {fileID: 0}
+  - itemName: Inspect
+    comment: The glue is still wet
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
+    conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

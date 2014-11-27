@@ -219,7 +219,7 @@ public class InteractableRev : MonoBehaviour {
 	
 	public void ResetActionLineTime() {
 		actionLineTime = 0.0f;
-		actionLineReset = true;
+		//actionLineReset = true;
 	}
 	
 	public bool isTalking(){

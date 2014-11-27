@@ -50,6 +50,7 @@ public class GameFlow : MonoBehaviour {
 	public GameObject testInvItem;
 
 	public GameObject spawnEmptyCup; // Rev: Spawn so you can keep giving coffee to Royo
+	public GameObject forgedOrders; 
 
 	private GameObject faderCard;
 
@@ -213,6 +214,18 @@ public class GameFlow : MonoBehaviour {
 			playAnimation("SpillCoffeeOnRoyo");
 		}
 
+		if(eventName == "ForgeryPuzzle"){
+			// KT: Give player the forged orders
+			addItem(forgedOrders);
+			animation.Play("ForgingDocuments");
+		}
+
+
+		if(eventName == "RoyoForgedOrders"){
+			// KT: Royo has received the forged orders
+			Debug.Log ("Royo has orders and leaves! Boom?");
+		}
+
 	}
 
 	public void playerSay(string text){
@@ -220,6 +233,12 @@ public class GameFlow : MonoBehaviour {
 		//sayChar.text = text;
 		//sayCharShadow.text = text;
 		//ResetReadingTime();
+	}
+
+	public void addItem(GameObject item){
+		GameObject newitem = GameObject.Instantiate (item) as GameObject;
+		newitem.name = newitem.name.Replace ("(Clone)", "");
+		inv.addItem (newitem);
 	}
 
 	// KT: This is a rather hacky way of doing this, is it a good idea?
@@ -241,7 +260,11 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	public void RoyoTurns(){
-		Debug.Log ("Royo turns around after spilling coffee on himself");
+		//Debug.Log ("Royo turns around after spilling coffee on himself");
+		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
+	}
+
+	public void RoyoTurnsBack(){
 		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
 	}
 

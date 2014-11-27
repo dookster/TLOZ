@@ -9,12 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
-  - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
-  - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
+  - 23: {fileID: 2300000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Cracked cup, full of hot coffee
+  m_Name: Inspect
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,9 +25,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -4.3297803e-17, y: .707106769, z: .707106888, w: -4.32978096e-17}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.0608592, y: .159999996, z: .800000012}
+  m_LocalScale: {x: .319999993, y: .319999993, z: .319999993}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +43,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 719873718c8ffd24a8105a038f705324, type: 2}
+  - {fileID: 2100000, guid: 3e6e978b71295ba478f55848177c4063, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -58,7 +57,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 0e4dcfeaa970c7248a44f0e2ef6355c0, type: 3}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -69,23 +68,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .117830485, y: .092714861, z: .063000001}
-  m_Center: {x: -.0113866627, y: -.00026438944, z: .0319410749}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0e4dcfeaa970c7248a44f0e2ef6355c0, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,25 +84,18 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
-  readingTime: 1000
-  actionLineTime: 0
-  invTargetRotation: {x: 290.528687, y: 170.813995, z: 33.2291298}
-  invTargetScale: {x: 8, y: 8, z: 8}
-  invTargetYPos: -.270000011
+  readingTime: 10
+  actionLineTime: 1000
+  invTargetRotation: {x: 45, y: 45, z: 45}
+  invTargetScale: {x: .479999989, y: .479999989, z: .479999989}
+  invTargetYPos: 0
   sayNPC: {fileID: 0}
   sayNPCShadow: {fileID: 0}
   hasStandHere: 0
   standHere: {x: 0, y: 0, z: 0}
   haslookHere: 0
   lookHere: {x: 0, y: 0, z: 0}
-  events:
-  - itemName: Inspect
-    comment: Careful... don't spill this.
-    pickUp: 0
-    destroyThis: 0
-    destroyOther: 0
-    newItemInInventory: []
-    conversation: {fileID: 0}
+  events: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

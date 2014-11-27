@@ -219,10 +219,10 @@ MonoBehaviour:
   haslookHere: 0
   lookHere: {x: 0, y: 0, z: 0}
   events:
-  - itemName: One of the president's pens...
+  - itemName: One of the president's pens
     comment: 
     pickUp: 0
-    destroyThis: 0
+    destroyThis: 1
     destroyOther: 0
     newItemInInventory: []
     conversation: {fileID: 11400034, guid: 7b4a9d0f96c19bc45bef9697ab2f7620, type: 2}
