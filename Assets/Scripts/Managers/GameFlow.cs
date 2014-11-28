@@ -66,6 +66,14 @@ public class GameFlow : MonoBehaviour {
 	public bool		finaleSetup			= false;
 	public bool		cutsceneOutro		= false;
 	public bool		cutsceneCredits		= false;
+
+
+	// Transforms that parent different versions of objects, enable/disable these as the story progresses
+	public Transform preEavesdropNode;
+	public Transform eavesdropNode;
+	public Transform forgeryNode;
+	public Transform forgeryNode2;
+	public Transform preBoomNode;
 	
 	void OnEnable(){
 		// Listen for any broadcasts of the type 'event'
@@ -191,7 +199,16 @@ public class GameFlow : MonoBehaviour {
 		}
 
 		if(eventName == "Coffee makerEmpty coffee cup and saucer" || eventName == "Empty coffee cup and saucerCoffee maker" || eventName == "Coffee makerHot cup of coffee with saucer" || eventName == "Hot cup of coffee with saucerCoffee maker"){
-			MakingCoffee();
+			// Making coffee to distract Royo
+			if(preEavesdropNode.gameObject.activeSelf){
+				animation.Play("DistractRoyo");
+			}
+
+			// Just making coffee
+			else {
+				MakingCoffee();
+			}
+			
 		}
 
 		if(eventName == "Coffee makerCracked coffee cup" || eventName == "Cracked coffee cupCoffee maker"){
@@ -226,6 +243,10 @@ public class GameFlow : MonoBehaviour {
 			Debug.Log ("Royo has orders and leaves! Boom?");
 		}
 
+		if(eventName == "TumblerDoor"){
+			animation.Play("ListenDoor");
+		}
+
 	}
 
 	public void playerSay(string text){
@@ -243,6 +264,8 @@ public class GameFlow : MonoBehaviour {
 
 	// KT: This is a rather hacky way of doing this, is it a good idea?
 	public void royoSay(string text){
+
+		royoInteractable = GameObject.Find ("Captain Aiden Royo").GetComponent<InteractableRev>();
 		royoInteractable.say(text);
 	}
 
@@ -259,14 +282,14 @@ public class GameFlow : MonoBehaviour {
 		}
 	}
 
-	public void RoyoTurns(){
-		//Debug.Log ("Royo turns around after spilling coffee on himself");
-		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
-	}
-
-	public void RoyoTurnsBack(){
-		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
-	}
+//	public void RoyoTurns(){
+//		//Debug.Log ("Royo turns around after spilling coffee on himself");
+//		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
+//	}
+//
+//	public void RoyoTurnsBack(){
+//		royoInteractable.gameObject.transform.Rotate(Vector3.up, 180);
+//	}
 
 	// Rev: Following is a list of functions for setting up minor repeating events in the game.
 
@@ -291,6 +314,24 @@ public class GameFlow : MonoBehaviour {
 	public void EavesdropSetup(){
 		eavesdropSetup = true;
 		debugStatusSetup();
+
+		preEavesdropNode.gameObject.SetActive(false);
+		eavesdropNode.gameObject.SetActive(true);
+	}
+
+	public void ForgerySetup(){
+		eavesdropNode.gameObject.SetActive(false);
+		forgeryNode.gameObject.SetActive(true);
+	}
+
+	public void ForgerySetup2(){
+		forgeryNode.gameObject.SetActive(false);
+		forgeryNode2.gameObject.SetActive(true);
+	}
+
+	public void PreBoomSetup(){
+		forgeryNode2.gameObject.SetActive(false);
+		preBoomNode.gameObject.SetActive(true);
 	}
 
 	public void CutsceneEnvelope(){

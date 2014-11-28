@@ -231,6 +231,7 @@ public class InteractableRev : MonoBehaviour {
 
 	public void say(string text){
 		if(sayNPC == null) return;
+		text = text.Replace ("NUULINE", "\n");
 		sayNPC.text = text;
 		sayNPCShadow.text = text;
 		ResetReadingTime();

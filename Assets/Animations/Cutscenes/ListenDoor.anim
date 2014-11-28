@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpillCoffeeOnRoyo
+  m_Name: ListenDoor
   serializedVersion: 4
   m_AnimationType: 1
   m_Compressed: 0
@@ -45,41 +45,27 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_Events:
   - time: 0
-    functionName: FadeToBlack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
-  - time: .0833333358
     functionName: PauseInput
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: .816666663
-    functionName: royoSay
-    data: Ow! Dammit! You... now look at my pants!
+  - time: .0500000007
+    functionName: FadeToBlack
+    data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 2.73333335
-    functionName: playerSay
-    data: Oh! How unfortunate!
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.83333325
-    functionName: ForgerySetup2
+  - time: 1.14999998
+    functionName: ForgerySetup
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.95000005
+  - time: 2.91666675
     functionName: FadeToClear
     data: 
     objectReferenceParameter: {fileID: 0}

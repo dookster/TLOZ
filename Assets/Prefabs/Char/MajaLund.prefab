@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400050}
   - 195: {fileID: 19500000}
-  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: MajaLund
   m_TagString: Untagged
@@ -733,6 +733,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400096}
   - 95: {fileID: 9500000}
+  - 82: {fileID: 8200000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: maja01016Rev
   m_TagString: Untagged
@@ -765,7 +767,7 @@ GameObject:
   - 4: {fileID: 400100}
   - 23: {fileID: 2300000}
   - 102: {fileID: 10200000}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sayMajaShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +906,7 @@ GameObject:
   - 23: {fileID: 2300002}
   - 102: {fileID: 10200002}
   - 114: {fileID: 11400004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sayMaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1545,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100050}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.98636782, y: 0, z: 1.08125353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1984,7 +1986,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100118}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 0, y: 2.1500001, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: .0280000009, y: .0280000009, z: .0280000009}
   m_Children:
   - {fileID: 400100}
@@ -2297,6 +2299,64 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100096}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: .120999999
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -2353,7 +2413,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 64d34f34aa8a4b3458c3c9e672c888aa, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4283638821
+    rgba: 4287442738
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2368,13 +2428,50 @@ MonoBehaviour:
   justLook: 0
   lookDescription: 
   interactDistance: 1
+  readingTime: 1000
+  actionLineTime: 0
   invTargetRotation: {x: 0, y: 0, z: 0}
   invTargetScale: {x: 1, y: 1, z: 1}
   invTargetYPos: 0
   sayNPC: {fileID: 10200002}
   sayNPCShadow: {fileID: 10200000}
+  hasStandHere: 0
+  standHere: {x: 0, y: 0, z: 0}
+  haslookHere: 0
+  lookHere: {x: 0, y: 0, z: 0}
   events: []
 --- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f86529a7e427845be0bb12ff279535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audCli:
+  - {fileID: 8300000, guid: 6120bc1538dd1bb4ca7fe5eb7806f907, type: 3}
+  - {fileID: 8300000, guid: 6b51a3227d7a7134282d4656d2f23922, type: 3}
+  - {fileID: 8300000, guid: c6d607cfad0c5594dba519857d43c1ec, type: 3}
+  - {fileID: 8300000, guid: 93471ce5f18e68d4e9fd0b8ab3b51e53, type: 3}
+  - {fileID: 8300000, guid: 176f2ed2bf5965148a74263eaf25090d, type: 3}
+  - {fileID: 8300000, guid: 2fea03e2f846e0746986b295f753b20c, type: 3}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4740c52bc764cb42954b212e3388c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  zValue: 0
+--- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2388,18 +2485,6 @@ MonoBehaviour:
   navVelocity: {x: 0, y: 0, z: 0}
   navMag: 0
   damping: .100000001
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4740c52bc764cb42954b212e3388c73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2515,12 +2600,12 @@ NavMeshAgent:
   m_Acceleration: 64
   avoidancePriority: 50
   m_AngularSpeed: 720
-  m_StoppingDistance: .75
+  m_StoppingDistance: .400000006
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.58000004
-  m_BaseOffset: -.0799999982
+  m_BaseOffset: -.200000003
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
