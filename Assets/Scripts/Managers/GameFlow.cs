@@ -198,7 +198,7 @@ public class GameFlow : MonoBehaviour {
 			playAnimation("MakeCrackedCoffee");
 		}
 
-		if(eventName == "Sealed envelopeCoffee pot"){
+		if(eventName == "Sealed envelopeCoffee maker"){
 			playAnimation("OpeningTheEnvelope");
 			Debug.Log ("Opening the envelope...");
 		}
