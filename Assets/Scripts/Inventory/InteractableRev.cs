@@ -44,6 +44,8 @@ public class InteractableRev : MonoBehaviour {
 
 	public MatchEvent[] events;
 
+	private string[] defaultResponses = new string[]{"That doesn't do anything.", "Hmm... how?", "I don't see the point in that.", "No that wont help me.", "Huh?"};
+
 	/**
 	 * Class representing a single pairing of items. Each interactable holds a list of these
 	 */
@@ -212,7 +214,12 @@ public class InteractableRev : MonoBehaviour {
 		}
 
 		// We don't have any events for this item, do something generic
-		GameFlow.instance.playerSay("Uh... Hm... Huh?");
+		sayRandomNoGoMessage();
+	}
+
+	public void sayRandomNoGoMessage(){
+		string response = defaultResponses[Random.Range(0, defaultResponses.Length)];
+		GameFlow.instance.playerSay(response);
 	}
 
 	public void ResetReadingTime () {
