@@ -28,9 +28,6 @@ public class GameFlow : MonoBehaviour {
 	public float readingSpeed = 2.0f;
 	public bool conversationClickThrough; // If true, wait for the player to click before advancing conversations
 
-	public InteractableRev playerInteractable;
-	public InteractableRev royoInteractable;
-
 	public ConversationUI conversationUI;
 
 	public bool inputPaused; // Set to true to keep the player from moving the character, e.g. in a conversation
@@ -53,6 +50,25 @@ public class GameFlow : MonoBehaviour {
 	public GameObject forgedOrders; 
 
 	private GameObject faderCard;
+	private GameObject intro01;
+	private SlideshowMaterials intro01SlideshowMats;
+
+	// Rev: Local references to actors for nav, say and turn actions in cutscenes
+	private GameObject		objMaja;
+	private	NavMeshAgent 	navMaja;
+	public 	InteractableRev playerInteractable;
+
+	private	GameObject		objAbner;
+	private	NavMeshAgent 	navAbner;
+	public 	InteractableRev abnerInteractable;
+
+	private GameObject		objRoyo;
+	private NavMeshAgent 	navRoyo;
+	public 	InteractableRev royoInteractable;
+
+	private GameObject		objElke;
+	private NavMeshAgent 	navElke;
+	public 	InteractableRev elkeInteractable;
 
 	// Rev: Bools set by functions used to set up game events - bools are displayed in 3D Text.
 	public bool		cutsceneIntro 		= false;
@@ -88,21 +104,43 @@ public class GameFlow : MonoBehaviour {
 	void Start () {
 		//sayChar = GameObject.Find ("sayMaja").GetComponent<TextMesh> ();
 		//sayCharShadow = GameObject.Find ("sayMajaShadow").GetComponent<TextMesh> ();
-		playerInteractable = GameObject.Find ("Player").GetComponent<InteractableRev>();
-		royoInteractable = GameObject.Find ("Captain Aiden Royo").GetComponent<InteractableRev>();
 
-		conversationUI = GameObject.Find("Conversation").GetComponent<ConversationUI>();
+		// Rev: References to character navMeshAgents so cutscenes can direct the characters...
+		// Rev: ...references to interactables so cutscenes can prompt characters to say things...
+		// Rev: ...references to character objects so they can be turned in a specific direction.
+		objMaja					= GameObject.Find ("MajaLund");
+		playerInteractable 		= GameObject.Find ("Player").GetComponent<InteractableRev>();
+		navMaja 				= objMaja.GetComponent<NavMeshAgent> ();
 
-		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
-		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
+		objAbner				= GameObject.Find ("Abner Hall");
+		abnerInteractable		= objAbner.GetComponent<InteractableRev>();
+		navAbner 				= objAbner.GetComponent<NavMeshAgent> ();
 
-		debugStatus = GameObject.Find ("DebugStatus").GetComponent<TextMesh> ();
+		objRoyo					= GameObject.Find ("Captain Aiden Royo");
+		royoInteractable 		= objRoyo.GetComponent<InteractableRev>();
+		navRoyo 				= objRoyo.GetComponent<NavMeshAgent> ();
 
-		inv = GameObject.Find ("Inventory").GetComponent<Inventory> ();
+		objElke					= GameObject.Find ("Elke Rassendyll");
+		elkeInteractable		= objElke.GetComponent<InteractableRev>();
+		navElke 				= objElke.GetComponent<NavMeshAgent> ();
 
-		faderCard = GameObject.Find ("FaderCard");
+		// ====================================================================
+
+		conversationUI 			= GameObject.Find("Conversation").GetComponent<ConversationUI>();
+
+		actionLine 				= GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
+		actionLineShadow 		= GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
+
+		debugStatus 			= GameObject.Find ("DebugStatus").GetComponent<TextMesh> ();
+
+		inv 					= GameObject.Find ("Inventory").GetComponent<Inventory> ();
+
+		faderCard 				= GameObject.Find ("FaderCard");
+		intro01					= GameObject.Find ("SlideshowIntro01");
+		intro01SlideshowMats 	= intro01.GetComponent<SlideshowMaterials> ();
 
 		iTween.CameraFadeAdd ();
+
 	}
 	
 	// Update is called once per frame
@@ -162,6 +200,9 @@ public class GameFlow : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.Keypad0))CutsceneOutro();
 		if(Input.GetKeyDown (KeyCode.KeypadPeriod))CutsceneCredits();
 
+//		if(Input.GetKeyDown (KeyCode.KeypadDivide)){
+//			Debug.Log ("The vector is: " + parseVector3("001.81,002.71,003.61"));
+//		}
 	}
 
 	private void hideActionLine(){
@@ -249,6 +290,8 @@ public class GameFlow : MonoBehaviour {
 
 	}
 
+	// ====================================================================
+	// Rev: Cutscene functions for Player
 	public void playerSay(string text){
 		playerInteractable.say(text);
 		//sayChar.text = text;
@@ -256,17 +299,84 @@ public class GameFlow : MonoBehaviour {
 		//ResetReadingTime();
 	}
 
+	public void playerGo(string destination){
+		navMaja.SetDestination (parseVector3(destination));
+	}
+
+	public void playerTurn(string destination){
+
+		Vector3 tempDest = parseVector3 (destination);
+		navMaja.updateRotation = false; // Rev: Turn off the NavMeshAgent's rotation...
+		Vector3 relativePos = tempDest - objMaja.transform.position; // Rev: ...get vector between current pos and target...
+		objMaja.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
+		navMaja.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	// ====================================================================
+	// Rev: Cutscene functions for Abner
+	public void abnerSay(string text){
+		abnerInteractable.say (text);
+	}
+
+	public void abnerGo(string destination){
+		navAbner.SetDestination (parseVector3(destination));
+	}
+
+	public void abnerTurn(string destination){
+		
+		Vector3 tempDest = parseVector3 (destination);
+		navAbner.updateRotation = false; // Rev: Turn off the NavMeshAgent's rotation...
+		Vector3 relativePos = tempDest - objAbner.transform.position; // Rev: ...get vector between current pos and target...
+		objAbner.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
+		navAbner.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	// ====================================================================
+	// Rev: Cutscene functions for Royo
+	public void royoSay(string text){
+		// KT: This is a rather hacky way of doing this, is it a good idea?
+		// royoInteractable = GameObject.Find ("Captain Aiden Royo").GetComponent<InteractableRev>();
+		royoInteractable.say(text);
+	}
+
+	public void royoGo(string destination){
+		navRoyo.SetDestination (parseVector3(destination));
+	}
+
+	public void royoTurn(string destination){
+		
+		Vector3 tempDest = parseVector3 (destination);
+		navRoyo.updateRotation = false; // Rev: Turn off the NavMeshAgent's rotation...
+		Vector3 relativePos = tempDest - objRoyo.transform.position; // Rev: ...get vector between current pos and target...
+		objRoyo.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
+		navRoyo.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	// ====================================================================
+	// Rev: Cutscene functions for Elke
+	public void elkeSay(string text){
+		elkeInteractable.say (text);
+	}
+
+	public void elkeGo(string destination){
+		navElke.SetDestination (parseVector3(destination));
+	}
+
+	public void elkeTurn(string destination){
+		
+		Vector3 tempDest = parseVector3 (destination);
+		navElke.updateRotation = false; // Rev: Turn off the NavMeshAgent's rotation...
+		Vector3 relativePos = tempDest - objElke.transform.position; // Rev: ...get vector between current pos and target...
+		objElke.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
+		navElke.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	// ====================================================================
+
 	public void addItem(GameObject item){
 		GameObject newitem = GameObject.Instantiate (item) as GameObject;
 		newitem.name = newitem.name.Replace ("(Clone)", "");
 		inv.addItem (newitem);
-	}
-
-	// KT: This is a rather hacky way of doing this, is it a good idea?
-	public void royoSay(string text){
-
-		royoInteractable = GameObject.Find ("Captain Aiden Royo").GetComponent<InteractableRev>();
-		royoInteractable.say(text);
 	}
 
 	// Rev: Function that can be triggered by animation clip
@@ -302,11 +412,26 @@ public class GameFlow : MonoBehaviour {
 		audio.Play ();
 	}
 
+	// Rev: Functions for the introduction
+
+	public void IntroSlideVisible(int isVisible){
+
+		if(isVisible > 0){
+			intro01.renderer.enabled = true;
+		}else{
+			intro01.renderer.enabled = false;
+		}
+	}
+
+	public void IntroSlideChange(int slideNumber){
+		intro01SlideshowMats.SwitchSlide (slideNumber);
+	}
 
 
 	// Rev: Following is a list of functions for setting up MAJOR events and cutscenes in the game.
 
 	public void CutsceneIntro(){
+		playAnimation ("GameIntro");
 		cutsceneIntro = true;
 		debugStatusSetup();
 	}
@@ -402,5 +527,30 @@ public class GameFlow : MonoBehaviour {
 							"9 Finale Setup: " + finaleSetup + "\n" +
 							"0 Cutscene Outro: " + cutsceneOutro + "\n" +
 							". Cutscene Credits: " + cutsceneCredits;
+	}
+
+	// Rev: Convert a string (eg, "001,023,042") into a Vector3 (001,023,042) - for use moving characters around with cutscenes.
+	// Rev: ...because the bloody Anim Events won't take a Gameobject in-scene or a Vector3)
+	private Vector3 parseVector3(string sourceString){
+
+		// string 		outString;
+		Vector3 	outVector3;
+		string[]	splitString;
+
+		// Rev: Trim extraneous parenthesis (Do we need this?)
+		//outString = sourceString.Substring (1, sourceString.Length - 2);
+
+		// Rev: Split delimited values into an array
+//		splitString = outString.Split ("," [0]);
+		splitString = sourceString.Split ("," [0]);
+
+		// Rev: Construct new V3 from array elements
+		float x = float.Parse (splitString [0]);
+		float y = float.Parse (splitString [1]);
+		float z = float.Parse (splitString [2]);
+
+		outVector3 = new Vector3 (x, y, z);
+
+		return outVector3;
 	}
 }
