@@ -182,7 +182,7 @@ public class GameFlow : MonoBehaviour {
 				debugStatus.text = null;
 				debugStatusVisible = false;
 			}else if (!debugStatusVisible){
-				Debug.Log("Should be displaying Status...");
+				// Debug.Log("Should be displaying Status...");
 				debugStatusSetup();
 				debugStatusVisible = true;
 			}
@@ -352,6 +352,14 @@ public class GameFlow : MonoBehaviour {
 		navRoyo.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
 	}
 
+	public void royoIsBrushing(){
+		royoInteractable.royoIsBrushing ();
+	}
+
+	public void royoNotBrushing(){
+		royoInteractable.royoNotBrushing ();
+	}
+
 	// ====================================================================
 	// Rev: Cutscene functions for Elke
 	public void elkeSay(string text){
@@ -369,6 +377,30 @@ public class GameFlow : MonoBehaviour {
 		Vector3 relativePos = tempDest - objElke.transform.position; // Rev: ...get vector between current pos and target...
 		objElke.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
 		navElke.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	public void elkeSitDown(){
+		elkeInteractable.elkeSitDown();
+	}
+	
+	public void elkeStandUp(){
+		elkeInteractable.elkeStandUp();
+	}
+	
+	public void elkeChop(){
+		elkeInteractable.elkeChop ();
+	}
+	
+	public void elkePound(){
+		elkeInteractable.elkePound();
+	}
+	
+	public void elkeThrow(){
+		elkeInteractable.elkeThrow ();
+	}
+
+	public void elkeBobble(){
+		elkeInteractable.headBobble ();
 	}
 
 	// ====================================================================
@@ -431,7 +463,8 @@ public class GameFlow : MonoBehaviour {
 	// Rev: Following is a list of functions for setting up MAJOR events and cutscenes in the game.
 
 	public void CutsceneIntro(){
-		playAnimation ("GameIntro");
+		// playAnimation ("GameIntro");
+		playAnimation ("ElkeSitTest");
 		cutsceneIntro = true;
 		debugStatusSetup();
 	}
@@ -553,4 +586,6 @@ public class GameFlow : MonoBehaviour {
 
 		return outVector3;
 	}
+
+
 }

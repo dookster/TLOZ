@@ -8,6 +8,8 @@ public class InteractableRev : MonoBehaviour {
 
 //	public bool pickUp;
 
+	private Animator animator;
+
 	public bool justLook;
 	public string lookDescription;
 
@@ -62,6 +64,9 @@ public class InteractableRev : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		animator = GetComponentInChildren<Animator> () as Animator;
+
 		actionLine = GameObject.Find ("sayNeutral").GetComponent<TextMesh> ();
 		actionLineShadow = GameObject.Find ("sayNeutralShadow").GetComponent<TextMesh> ();
 
@@ -260,5 +265,42 @@ public class InteractableRev : MonoBehaviour {
 		Vector3 thisPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
 		playerPosition = new Vector3(playerPosition.x, 0.0f, playerPosition.z);
 		return Vector3.Distance(thisPosition, playerPosition) <= interactDistance;
+	}
+
+	public void headBobble() {
+		animator.SetTrigger ("headBobble");
+	}
+
+	public void elkeSitDown(){
+		animator.SetBool ("sitting", true);
+		Debug.Log ("Sitting anim activated.");
+	}
+
+	public void elkeStandUp(){
+		animator.SetBool ("sitting", false);
+		Debug.Log ("Sitting anim deactivated.");
+	}
+
+	public void elkeChop(){
+		animator.SetTrigger ("chopping");
+		Debug.Log ("Chopping anim triggered.");
+	}
+
+	public void elkePound(){
+		animator.SetTrigger ("pounding");
+		Debug.Log ("Pounding anim triggered.");
+	}
+
+	public void elkeThrow(){
+		animator.SetTrigger ("throw");
+		Debug.Log ("Throw anim triggered.");
+	}
+
+	public void royoIsBrushing (){
+		animator.SetBool ("brushing", true);
+	}
+
+	public void royoNotBrushing (){
+		animator.SetBool ("brushing", false);
 	}
 }
