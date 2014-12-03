@@ -26,7 +26,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: END
+  m_Name: DELETE
   m_TagString: Dialogue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c15ddcb96d7f54388c84b8188f63e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLine: END
+  playerLine: DELETE
   response: 
   parentNode: {fileID: 11400010}
 --- !u!114 &11400004
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLine: Oh. Okay, I'll get this right to hi--
-  response: There's a girl.
+  response: "There's a girl.\nOh and throw this cup out,\n will you?"
   parentNode: {fileID: 11400008}
 --- !u!114 &11400012
 MonoBehaviour:
