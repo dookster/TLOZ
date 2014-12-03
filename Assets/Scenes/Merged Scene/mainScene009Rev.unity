@@ -13836,7 +13836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &798534029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13865,6 +13865,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be5dc2309935b304a8a168d5b5c3102c, type: 3}
   - {fileID: 8300000, guid: 53337bdde80fa714ba0dfeb08e42d67e, type: 3}
   - {fileID: 8300000, guid: 7ae0bf826f2dd124c8169428399c666a, type: 3}
+  camFollow: {fileID: 0}
   testInvItem: {fileID: 100000, guid: 65622d633276f564ea0ba596f3e4ae6c, type: 2}
   spawnEmptyCup: {fileID: 100000, guid: bfec031a58f8f414aaf223ba271c8a40, type: 2}
   forgedOrders: {fileID: 100000, guid: 40e7971a1dd327c4a8a9a17cf422f101, type: 2}
@@ -37425,6 +37426,9 @@ GameObject:
   - 124: {fileID: 2008450596}
   - 114: {fileID: 2008450600}
   - 114: {fileID: 2008450601}
+  - 114: {fileID: 2008450603}
+  - 82: {fileID: 2008450602}
+  - 111: {fileID: 2008450595}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -37432,6 +37436,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!111 &2008450595
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2008450594}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 66bb30c80e3b9a745954be782278deee, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 66bb30c80e3b9a745954be782278deee, type: 2}
+  - {fileID: 7400000, guid: c45151bd88b4a0d46abb59b75b4b6bf8, type: 2}
+  - {fileID: 7400000, guid: d8018c7b324c2d843838f22ad7b28c55, type: 2}
+  - {fileID: 7400000, guid: 9897c1f97dd83614ab5753f27a3689b7, type: 2}
+  - {fileID: 7400000, guid: 78ca5558e73a2b147917d7e72af59316, type: 2}
+  - {fileID: 7400000, guid: 0d0fbef154ab2f94c945c5e0ef18a1ee, type: 2}
+  - {fileID: 7400000, guid: 492087d832abd0a4bad67e4d598ee460, type: 2}
+  - {fileID: 7400000, guid: fd4cf85015652384aab87a83c46eaafe, type: 2}
+  - {fileID: 7400000, guid: b8550454f1b79f64f9e0288c6a9f3008, type: 2}
+  - {fileID: 7400000, guid: 368355e791e12a74c93a149520d098e9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!124 &2008450596
 Behaviour:
   m_ObjectHideFlags: 0
@@ -37540,6 +37568,116 @@ MonoBehaviour:
   zDistance: -4
   yDistance: 1.5
   trackPlayer: 1
+--- !u!82 &2008450602
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2008450594}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &2008450603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2008450594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554c63073c37bc84f86e9234e929bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaTimeModifier: 1
+  dTimeTarget: 1
+  dTimeTargetSpeed: 1
+  dTimeModified: 0
+  pause: 0
+  readingSpeed: 2
+  conversationClickThrough: 1
+  conversationUI: {fileID: 1431711150}
+  inputPaused: 0
+  actionLineTime: 0
+  actionLineReset: 0
+  audClips:
+  - {fileID: 8300000, guid: 4dd0679ff5856fe4486739c9ab78b76d, type: 3}
+  - {fileID: 8300000, guid: 775f38d5c5ef41448bc8a7164e6cea3c, type: 3}
+  - {fileID: 8300000, guid: be5dc2309935b304a8a168d5b5c3102c, type: 3}
+  - {fileID: 8300000, guid: 53337bdde80fa714ba0dfeb08e42d67e, type: 3}
+  - {fileID: 8300000, guid: 7ae0bf826f2dd124c8169428399c666a, type: 3}
+  camFollow: {fileID: 0}
+  testInvItem: {fileID: 100000, guid: 65622d633276f564ea0ba596f3e4ae6c, type: 2}
+  spawnEmptyCup: {fileID: 100000, guid: bfec031a58f8f414aaf223ba271c8a40, type: 2}
+  forgedOrders: {fileID: 100000, guid: 40e7971a1dd327c4a8a9a17cf422f101, type: 2}
+  playerInteractable: {fileID: 0}
+  abnerInteractable: {fileID: 0}
+  royoInteractable: {fileID: 0}
+  elkeInteractable: {fileID: 0}
+  cutsceneIntro: 0
+  eavesdropSetup: 0
+  cutsceneEnvelope: 0
+  sealedSetup: 0
+  cutsceneMortar: 0
+  whiskeySetup: 0
+  computerSetup: 0
+  cutsceneConfront: 0
+  finaleSetup: 0
+  cutsceneOutro: 0
+  cutsceneCredits: 0
+  preEavesdropNode: {fileID: 2136516292}
+  eavesdropNode: {fileID: 1018806642}
+  forgeryNode: {fileID: 1720405868}
+  forgeryNode2: {fileID: 819741462}
+  preBoomNode: {fileID: 1300154008}
 --- !u!1 &2010010335
 GameObject:
   m_ObjectHideFlags: 0

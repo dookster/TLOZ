@@ -43,6 +43,8 @@ public class GameFlow : MonoBehaviour {
 
 	public AudioClip[] audClips;
 
+	public CameraFollow camFollow;
+
 	private Inventory inv;
 	public GameObject testInvItem;
 
@@ -140,6 +142,8 @@ public class GameFlow : MonoBehaviour {
 		intro01SlideshowMats 	= intro01.GetComponent<SlideshowMaterials> ();
 
 		iTween.CameraFadeAdd ();
+
+		camFollow				= GetComponent<CameraFollow>();
 
 	}
 	
@@ -331,6 +335,10 @@ public class GameFlow : MonoBehaviour {
 		navAbner.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
 	}
 
+	public void abnerPat(){
+		abnerInteractable.abnerPat ();
+	}
+
 	// ====================================================================
 	// Rev: Cutscene functions for Royo
 	public void royoSay(string text){
@@ -423,6 +431,10 @@ public class GameFlow : MonoBehaviour {
 			inputPaused = true;
 		}
 	}
+
+	public void ToggleCameraTrack(){
+		camFollow.trackPlayer = !camFollow.trackPlayer;
+		}
 
 //	public void RoyoTurns(){
 //		//Debug.Log ("Royo turns around after spilling coffee on himself");

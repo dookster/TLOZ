@@ -11,6 +11,8 @@ public class CameraFollow : MonoBehaviour {
 	public float zDistance;
 
 	public float yDistance;
+
+	public bool trackPlayer = true;
 	
 //	private bool wasLocked = false;
 
@@ -24,8 +26,11 @@ public class CameraFollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		Vector3 modifiedTarget = new Vector3 (target.position.x, target.position.y + yDistance, target.position.z + zDistance);
-		transform.position = Vector3.Lerp (transform.position, modifiedTarget, GameFlow.instance.dTimeModified * speed);
+		if(trackPlayer){
+			Vector3 modifiedTarget = new Vector3 (target.position.x, target.position.y + yDistance, target.position.z + zDistance);
+			transform.position = Vector3.Lerp (transform.position, modifiedTarget, GameFlow.instance.dTimeModified * speed);
+		}
+
 
 //		if (Input.GetKeyDown("escape"))
 //			Screen.lockCursor = false;

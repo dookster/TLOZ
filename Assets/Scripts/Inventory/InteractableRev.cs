@@ -303,4 +303,8 @@ public class InteractableRev : MonoBehaviour {
 	public void royoNotBrushing (){
 		animator.SetBool ("brushing", false);
 	}
+
+	public void abnerPat(){
+		animator.SetTrigger ("abnerPat");
+	}
 }
