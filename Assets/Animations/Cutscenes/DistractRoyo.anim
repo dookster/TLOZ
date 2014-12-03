@@ -27,7 +27,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 3
+    m_StopTime: 5.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -51,35 +51,56 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: .0833333358
-    functionName: FadeToBlack
+  - time: .166666672
+    functionName: PlayAudioGeneric
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: .933333337
+  - time: 1.16666663
     functionName: EavesdropSetup
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.66666663
+  - time: 1.5
+    functionName: royoGo
+    data: -2.5, 0, 2
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.1500001
+    functionName: PlayAudioGeneric
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 3.6500001
+    functionName: PlayAudioGeneric
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
+  - time: 4.48333311
+    functionName: royoTurn
+    data: 0,0,0
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.33333349
     functionName: royoSay
     data: Aha! Something smells good!
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.91666675
-    functionName: FadeToClear
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
-  - time: 3
+  - time: 5.5
     functionName: PauseInput
     data: 
     objectReferenceParameter: {fileID: 0}

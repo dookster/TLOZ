@@ -51,13 +51,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: .916666687
-    functionName: FadeToBlack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
   - time: 1.01666665
     functionName: PlayAudioGeneric
     data: 
@@ -84,13 +77,6 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 9.01666641
-    functionName: FadeToClear
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
     intParameter: 0
     messageOptions: 0
   - time: 9.33333302

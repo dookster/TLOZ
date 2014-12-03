@@ -104,6 +104,11 @@ public class DialogueConversation : DialogueNode{
 	 */
 	private bool keyWordMatch(string key){
 		//Debug.Log ("keyword: " + key);
+		if(key.Equals("DELETE")){
+			interactable.removeEventWithConvo(this);
+			GameFlow.instance.inputPaused = false;
+			return true;
+		}
 		if(key.Equals("END")){
 			Debug.Log("Conversation END");
 			GameFlow.instance.inputPaused = false;

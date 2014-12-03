@@ -487,6 +487,7 @@ public class GameFlow : MonoBehaviour {
 
 		preEavesdropNode.gameObject.SetActive(false);
 		eavesdropNode.gameObject.SetActive(true);
+		objRoyo.GetComponent<RoyoBlock>().enabled = false;
 	}
 
 	public void ForgerySetup(){

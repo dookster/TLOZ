@@ -241,6 +241,16 @@ public class InteractableRev : MonoBehaviour {
 		return readingTime < GameFlow.instance.readingSpeed;
 	}
 
+	public void removeEventWithConvo(DialogueConversation conversation){
+		for(int n = 0 ; n < events.Length ; n++){
+			MatchEvent ev = events[n];
+			if(ev.conversation != null)
+			if(conversation.name == ev.conversation.name){
+				ev.itemName = "DELETED";
+			}
+		}
+	}
+
 	public void say(string text){
 		if(sayNPC == null) return;
 		text = text.Replace ("NUULINE", "\n");

@@ -27,7 +27,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 3
+    m_StopTime: 6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -51,28 +51,77 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: .0500000007
+  - time: .0666666701
     functionName: FadeToBlack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 1.14999998
+  - time: .633333325
+    functionName: royoGo
+    data: -4.6, 0,2
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.11666667
+    functionName: playerGo
+    data: 5.5,0,3.5
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2166667
     functionName: ForgerySetup
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.91666675
+  - time: 1.43333328
+    functionName: elkeSay
+    data: '"Something terrible"'
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.01666665
+    functionName: abnerSay
+    data: What do you mean NUULINE "something terrible"!
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.5
+    functionName: playerTurn
+    data: 7,0,1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.44999981
+    functionName: abnerGo
+    data: 7,0,3.5
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.98333311
+    functionName: royoTurn
+    data: 0,0,0
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.5
     functionName: FadeToClear
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 3
+  - time: 6
     functionName: PauseInput
     data: 
     objectReferenceParameter: {fileID: 0}
