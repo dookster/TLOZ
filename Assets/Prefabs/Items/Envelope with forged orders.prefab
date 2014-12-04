@@ -113,7 +113,7 @@ MonoBehaviour:
   lookHere: {x: 0, y: 0, z: 0}
   events:
   - itemName: Inspect
-    comment: I've sealed the envelope again
+    comment: I've sealed the envelope again. NUULINE Looks good as new.
     pickUp: 0
     destroyThis: 0
     destroyOther: 0

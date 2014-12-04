@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.499999493, y: .500000596, z: .500000596, w: .499999434}
-  m_LocalPosition: {x: -.569334745, y: .730825067, z: 2.50701642}
+  m_LocalPosition: {x: -.569334745, y: .730825067, z: 3.14382744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -193,7 +193,7 @@ MonoBehaviour:
     newItemInInventory: []
     conversation: {fileID: 0}
   - itemName: Inspect
-    comment: Just a cup and saucer.
+    comment: Just a cup and saucer. Fancy.
     pickUp: 0
     destroyThis: 0
     destroyOther: 0

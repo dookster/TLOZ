@@ -119,6 +119,14 @@ MonoBehaviour:
     destroyOther: 0
     newItemInInventory: []
     conversation: {fileID: 0}
+  - itemName: Inspect
+    comment: A cracked cup. NUULINE I should just throw it out NUULINE or it might
+      hurt someone.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
+    conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

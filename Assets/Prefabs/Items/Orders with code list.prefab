@@ -226,6 +226,13 @@ MonoBehaviour:
     destroyOther: 0
     newItemInInventory: []
     conversation: {fileID: 11400034, guid: 7b4a9d0f96c19bc45bef9697ab2f7620, type: 2}
+  - itemName: Inspect
+    comment: Now I have the codes,NUULINEperhaps I can change the order...
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
+    conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -190,7 +190,15 @@ MonoBehaviour:
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
-    newItemInInventory: {fileID: 0}
+    newItemInInventory:
+    - {fileID: 0}
+    conversation: {fileID: 0}
+  - itemName: Inspect
+    comment: Fresh and hot.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

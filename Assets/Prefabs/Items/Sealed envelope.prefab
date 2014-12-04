@@ -111,7 +111,15 @@ MonoBehaviour:
   standHere: {x: 0, y: 0, z: 0}
   haslookHere: 0
   lookHere: {x: 0, y: 0, z: 0}
-  events: []
+  events:
+  - itemName: Inspect
+    comment: Orders from the president. NUULINE They're for Royo, but I need NUULINE
+      to know what's inside.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
+    conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -113,7 +113,7 @@ MonoBehaviour:
   lookHere: {x: 0, y: 0, z: 0}
   events:
   - itemName: Inspect
-    comment: Careful... don't spill this.
+    comment: I managed to fill it to the brim.NUULINEGotta be real careful with it.
     pickUp: 0
     destroyThis: 0
     destroyOther: 0

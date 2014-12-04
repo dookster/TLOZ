@@ -113,7 +113,7 @@ MonoBehaviour:
   lookHere: {x: 0, y: 0, z: 0}
   events:
   - itemName: Player
-    comment: 
+    comment: Hmm... I'll just borrow this.
     pickUp: 1
     destroyThis: 0
     destroyOther: 0
@@ -126,6 +126,14 @@ MonoBehaviour:
     destroyOther: 1
     newItemInInventory:
     - {fileID: 100002, guid: fe106b3c81cee794dbfe1fec495652d2, type: 2}
+    conversation: {fileID: 0}
+  - itemName: Inspect
+    comment: This guide explains the order codes from the president.NUULINEI really
+      shouldn't have this...
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

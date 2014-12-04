@@ -121,7 +121,7 @@ MonoBehaviour:
     - {fileID: 100000, guid: 8f397e6477085384ab4a0c596cd0b3a3, type: 2}
     conversation: {fileID: 0}
   - itemName: Inspect
-    comment: The glue is still wet
+    comment: The glue is still wet...
     pickUp: 0
     destroyThis: 0
     destroyOther: 0

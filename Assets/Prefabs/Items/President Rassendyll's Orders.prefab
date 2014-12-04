@@ -113,12 +113,19 @@ MonoBehaviour:
   lookHere: {x: 0, y: 0, z: 0}
   events:
   - itemName: Royo's copy of the order codes...
-    comment: 
+    comment: Ah... I think I can work out what it means now.
     pickUp: 0
     destroyThis: 1
     destroyOther: 1
     newItemInInventory:
     - {fileID: 100002, guid: fe106b3c81cee794dbfe1fec495652d2, type: 2}
+    conversation: {fileID: 0}
+  - itemName: Inspect
+    comment: The orders say PUNCL, NUULINE I have no idea what that means.
+    pickUp: 0
+    destroyThis: 0
+    destroyOther: 0
+    newItemInInventory: []
     conversation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
