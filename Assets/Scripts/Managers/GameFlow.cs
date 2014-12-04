@@ -318,6 +318,13 @@ public class GameFlow : MonoBehaviour {
 		navMaja.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
 	}
 
+	public void playerTeleport(string destination){
+		Vector3 tempDest = parseVector3 (destination);
+		navMaja.updatePosition = false;
+		objMaja.transform.position = tempDest;
+		navMaja.updatePosition = true;
+	}
+
 	// ====================================================================
 	// Rev: Cutscene functions for Abner
 	public void abnerSay(string text){
@@ -335,6 +342,13 @@ public class GameFlow : MonoBehaviour {
 		Vector3 relativePos = tempDest - objAbner.transform.position; // Rev: ...get vector between current pos and target...
 		objAbner.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
 		navAbner.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	public void abnerTeleport(string destination){
+		Vector3 tempDest = parseVector3 (destination);
+		navAbner.updatePosition = false;
+		objAbner.transform.position = tempDest;
+		navAbner.updatePosition = true;
 	}
 
 	public void abnerPat(){
@@ -362,6 +376,13 @@ public class GameFlow : MonoBehaviour {
 		navRoyo.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
 	}
 
+	public void royoTeleport(string destination){
+		Vector3 tempDest = parseVector3 (destination);
+		navRoyo.updatePosition = false;
+		objRoyo.transform.position = tempDest;
+		navRoyo.updatePosition = true;
+	}
+
 	public void royoIsBrushing(){
 		royoInteractable.royoIsBrushing ();
 	}
@@ -387,6 +408,13 @@ public class GameFlow : MonoBehaviour {
 		Vector3 relativePos = tempDest - objElke.transform.position; // Rev: ...get vector between current pos and target...
 		objElke.transform.rotation = Quaternion.LookRotation (relativePos); // Rev: ...apply rotation...
 		navElke.updateRotation = true; // Rev: ...and turn the NavMeshAgent rotation back on!
+	}
+
+	public void elkeTeleport(string destination){
+		Vector3 tempDest = parseVector3 (destination);
+		navElke.updatePosition = false;
+		objElke.transform.position = tempDest;
+		navElke.updatePosition = true;
 	}
 
 	public void elkeSitDown(){
@@ -478,7 +506,8 @@ public class GameFlow : MonoBehaviour {
 
 	public void CutsceneIntro(){
 		// playAnimation ("GameIntro");
-		playAnimation ("ElkeSitTest");
+		// playAnimation ("ElkeSitTest");
+		playAnimation ("Intro");
 		cutsceneIntro = true;
 		debugStatusSetup();
 	}
