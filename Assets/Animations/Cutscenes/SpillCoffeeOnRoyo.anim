@@ -58,6 +58,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
+  - time: .366666675
+    functionName: royoRemoveConversation
+    data: RoyoOrders
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: .816666663
     functionName: royoSay
     data: Ow! Dammit! You... now look at my pants!

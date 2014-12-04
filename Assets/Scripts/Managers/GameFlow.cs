@@ -391,6 +391,10 @@ public class GameFlow : MonoBehaviour {
 		royoInteractable.royoNotBrushing ();
 	}
 
+	public void royoRemoveConversation(string conversationName){
+		royoInteractable.removeEventWithConvoName(conversationName);
+	}
+
 	// ====================================================================
 	// Rev: Cutscene functions for Elke
 	public void elkeSay(string text){

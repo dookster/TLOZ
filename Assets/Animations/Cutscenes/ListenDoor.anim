@@ -58,6 +58,13 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
+  - time: .316666663
+    functionName: royoRemoveConversation
+    data: RoyoChat1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: .633333325
     functionName: royoGo
     data: -4.6, 0,2

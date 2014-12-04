@@ -242,10 +242,14 @@ public class InteractableRev : MonoBehaviour {
 	}
 
 	public void removeEventWithConvo(DialogueConversation conversation){
+		removeEventWithConvoName(conversation.name);
+	}
+
+	public void removeEventWithConvoName(string convoName){
 		for(int n = 0 ; n < events.Length ; n++){
 			MatchEvent ev = events[n];
 			if(ev.conversation != null)
-			if(conversation.name == ev.conversation.name){
+			if(convoName.Equals(ev.conversation.name)){
 				ev.itemName = "DELETED";
 			}
 		}
