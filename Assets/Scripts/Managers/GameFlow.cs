@@ -274,12 +274,14 @@ public class GameFlow : MonoBehaviour {
 			// KT: After coffee spill conversation
 			Debug.Log ("Spilling coffee...");
 			playAnimation("SpillCoffeeOnRoyo");
+			objRoyo.collider.enabled = false; // KT: we don't need to talk to Royo, but need to be able to click the orders in his pocket
 		}
 
 		if(eventName == "ForgeryPuzzle"){
 			// KT: Give player the forged orders
 			addItem(forgedOrders);
 			animation.Play("ForgingDocuments");
+			objRoyo.collider.enabled = true; // KT: And now we need to talk to him again
 		}
 
 

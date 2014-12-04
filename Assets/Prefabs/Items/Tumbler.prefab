@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -4.3297803e-17, y: .707106769, z: .707106888, w: -4.32978096e-17}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .567754805, y: .722927988, z: 2.92993426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 719873718c8ffd24a8105a038f705324, type: 2}
+  - {fileID: 2100000, guid: b931c8aa773c1bd48b268771ecb88b22, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -58,7 +58,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 0e4dcfeaa970c7248a44f0e2ef6355c0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ffdd72a0ecf3d074d968d3441a89d465, type: 3}
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -69,8 +69,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .117830485, y: .092714861, z: .063000001}
-  m_Center: {x: -.0113866627, y: -.00026438944, z: .0319410749}
+  m_Size: {x: .117830485, y: .116999999, z: .150000006}
+  m_Center: {x: -.0113866627, y: -.00026438944, z: .0900000036}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
